@@ -1,0 +1,4 @@
+Numero: F001
+Fournisseur: ABC Distribution
+Date: 01/10/2026
+Montant: 500 MAD

@@ -225,6 +225,7 @@ Si une autre installation Python est utilisée, installer les dépendances dans 
 ```
 
 Ne lancer le script sur les factures réelles qu'après avoir sauvegardé le dossier et configuré localement les paramètres email ; ne placer aucun mot de passe ou secret dans le code ou ce guide.
+<<<<<<< HEAD
 
 ## 7. Générateur automatique multidiscipline & Sauvegarde isolée
 
@@ -281,3 +282,5 @@ python generateur_factures.py --restaurer
 python tp2.py
 ```
 
+=======
+>>>>>>> d5212afef4491b67020530c0c1999c569d1af755

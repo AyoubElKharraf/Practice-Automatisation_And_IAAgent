@@ -26,7 +26,10 @@ import os
 import re
 import shutil
 import smtplib
+<<<<<<< HEAD
 import sys
+=======
+>>>>>>> d5212afef4491b67020530c0c1999c569d1af755
 from datetime import datetime
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -39,7 +42,10 @@ import pandas as pd
 DOSSIER_FACTURES = "Factures"
 DOSSIER_TRAITEES = os.path.join(DOSSIER_FACTURES, "Traitees")
 DOSSIER_A_CONTROLER = os.path.join(DOSSIER_FACTURES, "A_controler")
+<<<<<<< HEAD
 DOSSIER_SAUVEGARDE = "Sauvegardes_Factures"
+=======
+>>>>>>> d5212afef4491b67020530c0c1999c569d1af755
 RAPPORT_EXCEL = "rapport_factures.xlsx"
 LOG_FILE = "log.txt"
 SEUIL_MONTANT = 1000  # MAD
@@ -93,6 +99,7 @@ def creer_factures_exemple():
 # ----------------------------------------------------------------------
 def extraire_facture(chemin_fichier: str) -> dict:
     """
+<<<<<<< HEAD
     Lit un fichier facture (format texte .txt ou document .pdf) et retourne un dict avec les champs extraits.
     Lève une exception si le fichier est illisible, incomplet ou invalide.
     """
@@ -116,6 +123,16 @@ def extraire_facture(chemin_fichier: str) -> dict:
 
     if not contenu.strip():
         raise ValueError("Fichier illisible")
+=======
+    Lit un fichier facture et retourne un dict avec les champs extraits.
+    Lève une exception si le fichier est illisible, incomplet ou invalide.
+    """
+    try:
+        with open(chemin_fichier, "r", encoding="utf-8") as f:
+            contenu = f.read()
+    except Exception as e:
+        raise ValueError(f"Fichier illisible ({e})")
+>>>>>>> d5212afef4491b67020530c0c1999c569d1af755
 
     numero = re.search(r"Numero:\s*(.+)", contenu)
     fournisseur = re.search(r"Fournisseur:\s*(.+)", contenu)
@@ -143,7 +160,11 @@ def extraire_facture(chemin_fichier: str) -> dict:
     except ValueError:
         raise ValueError(f"Montant incorrect : '{montant_str}'")
 
+<<<<<<< HEAD
     res = {
+=======
+    return {
+>>>>>>> d5212afef4491b67020530c0c1999c569d1af755
         "N°": numero,
         "Fournisseur": fournisseur,
         "Date": date,
@@ -151,6 +172,7 @@ def extraire_facture(chemin_fichier: str) -> dict:
         "_fichier": chemin_fichier,
     }
 
+<<<<<<< HEAD
     match_discipline = re.search(r"Discipline:\s*(.+)", contenu)
     if match_discipline:
         res["Discipline"] = match_discipline.group(1).strip()
@@ -161,12 +183,18 @@ def extraire_facture(chemin_fichier: str) -> dict:
 def parcourir_dossier_factures(dossier: str) -> pd.DataFrame:
     lignes = []
     fichiers_vus = set()
+=======
+
+def parcourir_dossier_factures(dossier: str) -> pd.DataFrame:
+    lignes = []
+>>>>>>> d5212afef4491b67020530c0c1999c569d1af755
 
     for nom_fichier in sorted(os.listdir(dossier)):
         chemin = os.path.join(dossier, nom_fichier)
         if not os.path.isfile(chemin):
             continue  # ignore les sous-dossiers (Traitees/, A_controler/)
 
+<<<<<<< HEAD
         ext = os.path.splitext(nom_fichier)[1].lower()
         if ext not in (".txt", ".pdf"):
             continue
@@ -180,6 +208,11 @@ def parcourir_dossier_factures(dossier: str) -> pd.DataFrame:
             facture = extraire_facture(chemin)
             lignes.append(facture)
             fichiers_vus.add(base_nom)
+=======
+        try:
+            facture = extraire_facture(chemin)
+            lignes.append(facture)
+>>>>>>> d5212afef4491b67020530c0c1999c569d1af755
             log(f"[OK] Extraction réussie : {nom_fichier}")
         except ValueError as e:
             log(f"[ERREUR] {nom_fichier} : {e}")
@@ -202,6 +235,7 @@ def appliquer_decision(df: pd.DataFrame) -> pd.DataFrame:
 # ÉTAPE 4 : Rapport Excel
 # ----------------------------------------------------------------------
 def generer_rapport_excel(df: pd.DataFrame):
+<<<<<<< HEAD
     colonnes = ["N°", "Fournisseur"]
     if "Discipline" in df.columns and df["Discipline"].notna().any():
         colonnes.append("Discipline")
@@ -209,6 +243,9 @@ def generer_rapport_excel(df: pd.DataFrame):
 
     colonnes_existantes = [c for c in colonnes if c in df.columns]
     df_export = df[colonnes_existantes]
+=======
+    df_export = df[["N°", "Fournisseur", "Date", "Montant", "Statut"]]
+>>>>>>> d5212afef4491b67020530c0c1999c569d1af755
     df_export.to_excel(RAPPORT_EXCEL, index=False)
     log(f"[OK] Rapport généré : {RAPPORT_EXCEL}")
 
@@ -229,6 +266,7 @@ def classer_factures(df: pd.DataFrame):
 
         try:
             shutil.move(source, destination)
+<<<<<<< HEAD
 
             # Si un fichier jumeau (.pdf / .txt) est présent, le déplacer aussi
             racine_nom, ext = os.path.splitext(source)
@@ -240,6 +278,8 @@ def classer_factures(df: pd.DataFrame):
                     os.path.join(destination_dossier, os.path.basename(fichier_jumeau)),
                 )
 
+=======
+>>>>>>> d5212afef4491b67020530c0c1999c569d1af755
             log(f"[OK] Classée ({row['Statut']}) : {row['N°']}")
         except Exception as e:
             log(f"[ERREUR] Classement impossible pour {row['N°']} : {e}")
@@ -287,6 +327,7 @@ def notifier_factures_a_controler(df: pd.DataFrame):
 # ----------------------------------------------------------------------
 # ORCHESTRATION
 # ----------------------------------------------------------------------
+<<<<<<< HEAD
 def main(action: str = None):
     # Support des arguments de ligne de commande : --generer ou --restaurer
     if action is None and len(sys.argv) > 1:
@@ -317,6 +358,9 @@ def main(action: str = None):
         except Exception as e:
             log(f"[ERREUR] Échec de la restauration : {e}")
 
+=======
+def main():
+>>>>>>> d5212afef4491b67020530c0c1999c569d1af755
     log("===== Démarrage du robot RPA factures =====")
 
     if not os.path.exists(DOSSIER_FACTURES) or not os.listdir(DOSSIER_FACTURES):

@@ -1,0 +1,4 @@
+Numero: F003
+Fournisseur: Papeterie Oujda
+Date: 03/10/2026
+Montant: 250 MAD

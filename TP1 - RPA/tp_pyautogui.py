@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+"""Version PyAutoGUI du test local de formulaire, sans envoi d'emails."""
+
+>>>>>>> d5212afef4491b67020530c0c1999c569d1af755
 import time
 import webbrowser
 from pathlib import Path

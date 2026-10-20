@@ -1,3 +1,20 @@
+<<<<<<< HEAD
+=======
+"""
+TP RPA Python - Version selenium (alternative demandée en fin de TP)
+Masters AI & DS - M2I - S3 Automation & Agentic AI - Prof. Imane Lahbari
+
+Différence clé avec pyautogui : selenium cible les éléments du DOM directement
+(par id/name/css selector), donc plus fiable que simuler des touches clavier
+"à l'aveugle" — c'est la version qu'on utilise en pratique en entreprise.
+
+Installation requise :
+    pip install pandas openpyxl selenium
+    + télécharger le driver correspondant à ton navigateur (ex: chromedriver)
+      ou utiliser webdriver-manager : pip install webdriver-manager
+"""
+
+>>>>>>> d5212afef4491b67020530c0c1999c569d1af755
 import os
 import smtplib
 import time

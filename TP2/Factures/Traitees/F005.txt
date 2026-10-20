@@ -1,0 +1,4 @@
+Numero: F005
+Fournisseur: Electro Plus
+Date: 05/10/2026
+Montant: 980 MAD

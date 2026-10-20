@@ -1,0 +1,17 @@
+[2026-10-06 16:55:21] ===== Démarrage du robot RPA factures =====
+[2026-10-06 16:55:21] [OK] Extraction réussie : F001.txt
+[2026-10-06 16:55:21] [OK] Extraction réussie : F002.txt
+[2026-10-06 16:55:21] [OK] Extraction réussie : F003.txt
+[2026-10-06 16:55:21] [OK] Extraction réussie : F004.txt
+[2026-10-06 16:55:21] [OK] Extraction réussie : F005.txt
+[2026-10-06 16:55:21] [ERREUR] F006.txt : Montant manquant
+[2026-10-06 16:55:21] [ERREUR] F007.txt : Montant incorrect : 'abc MAD'
+[2026-10-06 16:55:22] [OK] Rapport généré : rapport_factures.xlsx
+[2026-10-06 16:55:22] [OK] Classée (Normal) : F001
+[2026-10-06 16:55:22] [OK] Classée (À contrôler) : F002
+[2026-10-06 16:55:22] [OK] Classée (Normal) : F003
+[2026-10-06 16:55:22] [OK] Classée (À contrôler) : F004
+[2026-10-06 16:55:22] [OK] Classée (Normal) : F005
+[2026-10-06 16:55:22] [AVERTISSEMENT] Notification ignorée pour F002 : configuration email absente.
+[2026-10-06 16:55:22] [AVERTISSEMENT] Notification ignorée pour F004 : configuration email absente.
+[2026-10-06 16:55:22] ===== Traitement terminé : 5 facture(s) traitée(s) =====

@@ -1,0 +1,4 @@
+Numero: F004
+Fournisseur: Fournisseur XYZ
+Date: 04/10/2026
+Montant: 3200 MAD

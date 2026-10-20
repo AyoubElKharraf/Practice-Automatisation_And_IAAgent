@@ -1,0 +1,4 @@
+Numero: F002
+Fournisseur: Tech Solutions
+Date: 02/10/2026
+Montant: 1500 MAD

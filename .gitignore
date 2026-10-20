@@ -1,0 +1,27 @@
+# Environnements Python locaux
+.venv/
+venv/
+env/
+
+# Fichiers Python générés
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Secrets et configuration locale
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Journaux et fichiers temporaires
+*.log
+*.tmp
+*.bak
+
+# Éditeurs et système
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini

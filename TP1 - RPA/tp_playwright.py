@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+"""Version Playwright du test local de formulaire, sans envoi d'emails."""
+
+>>>>>>> d5212afef4491b67020530c0c1999c569d1af755
 from pathlib import Path
 
 import pandas as pd
