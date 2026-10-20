@@ -1,0 +1,6 @@
+Numero: SAN-2026-0005
+Fournisseur: Polyclinique Médicale de Fès
+Date: 31/08/2026
+Montant: 3697.78 MAD
+Discipline: Santé
+Prestation: Examen ophtalmologique et correction visuelle

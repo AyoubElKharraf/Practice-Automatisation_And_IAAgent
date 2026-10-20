@@ -1,0 +1,200 @@
+{
+  "session_id": "session_20261013_150200",
+  "date_sauvegarde": "2026-10-13 15:02:00",
+  "dossier_source_initial": "C:\\Users\\DELL\\Documents\\Master\\Master_M2I\\SEMESTRE 3\\Automatisation IA_Agent\\TPs\\TP2\\Factures",
+  "nombre_factures": 18,
+  "total_montant_mad": 41064.0,
+  "repartition_disciplines": {
+    "Commerce & Fournitures": 2,
+    "Éducation & Formation": 2,
+    "Énergie & Eau": 2,
+    "Général": 2,
+    "Finance & Assurance": 2,
+    "Logement & Immobilier": 2,
+    "Santé": 2,
+    "Télécom & Cloud": 2,
+    "Transport & Logistique": 2
+  },
+  "factures": [
+    {
+      "fichier": "COM-2026-0008.txt",
+      "sha256": "0baaed060245981f4928dc4c027b01e2a211d075be531d419c2d2e21314991fa",
+      "numero": "COM-2026-0008",
+      "fournisseur": "Office Dépôt Maroc",
+      "discipline": "Commerce & Fournitures",
+      "date": "23/09/2026",
+      "montant": 730.44,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "COM-2026-0016.txt",
+      "sha256": "86a48781b56908a82bafae2433379bc39db4122d5bc32ed0d251f8c8614c7906",
+      "numero": "COM-2026-0016",
+      "fournisseur": "Librairie Papeterie Nationale de Rabat",
+      "discipline": "Commerce & Fournitures",
+      "date": "20/09/2026",
+      "montant": 538.25,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "EDU-2026-0005.txt",
+      "sha256": "c642fad97687c1a3fcec286c90233a7c7dfc340b25a7f6fdb1f4e27a7bb056aa",
+      "numero": "EDU-2026-0005",
+      "fournisseur": "Udemy Business Enterprise",
+      "discipline": "Éducation & Formation",
+      "date": "05/09/2026",
+      "montant": 7175.96,
+      "statut_attendu": "À contrôler"
+    },
+    {
+      "fichier": "EDU-2026-0013.txt",
+      "sha256": "3afb482c985e80c43a61047a5bb933f1b877caee3da312610987d1af10ae2123",
+      "numero": "EDU-2026-0013",
+      "fournisseur": "École Nationale Supérieure d'Informatique (ENSIAS)",
+      "discipline": "Éducation & Formation",
+      "date": "01/10/2026",
+      "montant": 6051.25,
+      "statut_attendu": "À contrôler"
+    },
+    {
+      "fichier": "ENG-2026-0003.txt",
+      "sha256": "9ee3ae593a7a60c56c9d3b73d25ed1c8e359138fcb1253edb413c8a957c63696",
+      "numero": "ENG-2026-0003",
+      "fournisseur": "Redal - Distribution Rabat Salé Témara",
+      "discipline": "Énergie & Eau",
+      "date": "30/09/2026",
+      "montant": 842.2,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "ENG-2026-0011.txt",
+      "sha256": "48a493720f9b0e6a156028fbc4acb79843b7d01b13c8149f52146c3b97cb3b37",
+      "numero": "ENG-2026-0011",
+      "fournisseur": "Amendis Tanger Tétouan",
+      "discipline": "Énergie & Eau",
+      "date": "10/10/2026",
+      "montant": 535.38,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "F006.txt",
+      "sha256": "eabb71722126aae93c570a3ef1faa2da289b5e56f818bcbaed5064c2676a97e3",
+      "numero": "F006",
+      "fournisseur": "Inconnu",
+      "discipline": "Général",
+      "date": "",
+      "montant": 0.0,
+      "statut_attendu": "Non déterminé"
+    },
+    {
+      "fichier": "F007.txt",
+      "sha256": "67636b759a0b798728dc22f7132c54afcead18f1d02f67a66557a7aa76302d46",
+      "numero": "F007",
+      "fournisseur": "Inconnu",
+      "discipline": "Général",
+      "date": "",
+      "montant": 0.0,
+      "statut_attendu": "Non déterminé"
+    },
+    {
+      "fichier": "FIN-2026-0002.txt",
+      "sha256": "4688e46767b25451a08456c514fd7593169e0fdb941f05790282ff5ef262b922",
+      "numero": "FIN-2026-0002",
+      "fournisseur": "Banque Populaire Régionale",
+      "discipline": "Finance & Assurance",
+      "date": "12/09/2026",
+      "montant": 967.24,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "FIN-2026-0010.txt",
+      "sha256": "3876841e313adfdc9a55af046e68a3bb69addbaf882932be8c6f58d4a27801b2",
+      "numero": "FIN-2026-0010",
+      "fournisseur": "CIH Bank Services Pro",
+      "discipline": "Finance & Assurance",
+      "date": "29/08/2026",
+      "montant": 7551.55,
+      "statut_attendu": "À contrôler"
+    },
+    {
+      "fichier": "LOG-2026-0006.txt",
+      "sha256": "4398e1b152a67a5157573ec1830d458ac7e31a7458789aec98f27b52799935cc",
+      "numero": "LOG-2026-0006",
+      "fournisseur": "Société Foncière & Immobilière Marocaine",
+      "discipline": "Logement & Immobilier",
+      "date": "21/09/2026",
+      "montant": 2682.07,
+      "statut_attendu": "À contrôler"
+    },
+    {
+      "fichier": "LOG-2026-0014.txt",
+      "sha256": "32eecc2526ab179822fd9ae57e208ef0fea3609e3717817185e644ee475d3cae",
+      "numero": "LOG-2026-0014",
+      "fournisseur": "Atlas Sécurité & Gardiennage SARL",
+      "discipline": "Logement & Immobilier",
+      "date": "08/09/2026",
+      "montant": 693.16,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "SAN-2026-0001.txt",
+      "sha256": "88476e729f0592dfd30cebe0c6a75658069f58c817cf74feb972b5be0ecc2395",
+      "numero": "SAN-2026-0001",
+      "fournisseur": "Pharmacie Al Manar Tanger",
+      "discipline": "Santé",
+      "date": "02/09/2026",
+      "montant": 455.6,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "SAN-2026-0009.txt",
+      "sha256": "2dda504a52a1c1520e19c1080718739e2951cc6e7f969748b9b305a2838d8389",
+      "numero": "SAN-2026-0009",
+      "fournisseur": "Cabinet d'Ophtalmologie Vision Plus",
+      "discipline": "Santé",
+      "date": "05/09/2026",
+      "montant": 2457.61,
+      "statut_attendu": "À contrôler"
+    },
+    {
+      "fichier": "TEL-2026-0004.txt",
+      "sha256": "106753b64182edff061546873fe47eeb3a809b2588728bf6e84c4ad7092b08b3",
+      "numero": "TEL-2026-0004",
+      "fournisseur": "Amazon Web Services (AWS) EMEA",
+      "discipline": "Télécom & Cloud",
+      "date": "13/09/2026",
+      "montant": 708.98,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "TEL-2026-0012.txt",
+      "sha256": "825c97395d8914d906c17f45dff12c8cc0678296d9b713e8b4cc0c73eaf55833",
+      "numero": "TEL-2026-0012",
+      "fournisseur": "OVHcloud Hébergement Dédié",
+      "discipline": "Télécom & Cloud",
+      "date": "02/10/2026",
+      "montant": 6532.87,
+      "statut_attendu": "À contrôler"
+    },
+    {
+      "fichier": "TRP-2026-0007.txt",
+      "sha256": "ed9a50aca848649e780d651637a75e6891d993a5478dd29e591aaa5932ce71d6",
+      "numero": "TRP-2026-0007",
+      "fournisseur": "Autoroutes du Maroc (ADM) - Télépéage Jawaz",
+      "discipline": "Transport & Logistique",
+      "date": "03/10/2026",
+      "montant": 2871.05,
+      "statut_attendu": "À contrôler"
+    },
+    {
+      "fichier": "TRP-2026-0015.txt",
+      "sha256": "2e7c906f1353c710014bd247587e0ff7b930b158b983ff196b6554cb9c9c71ae",
+      "numero": "TRP-2026-0015",
+      "fournisseur": "CTM - Messagerie Express et Colis",
+      "discipline": "Transport & Logistique",
+      "date": "29/09/2026",
+      "montant": 270.39,
+      "statut_attendu": "Normal"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "project_name": "Job Market & Competitor Price Intelligence Bot",
+  "version": "1.0.0",
+  "search_settings": {
+    "keywords": ["RPA", "AI Agent", "Python Developer", "Automation Engineer", "Data Scientist"],
+    "location": "Remote",
+    "sources": [
+      {
+        "name": "RemoteOK Live Tech Feed",
+        "type": "api_web",
+        "url": "https://remoteok.com/api",
+        "enabled": true
+      },
+      {
+        "name": "Playwright Dynamic Web Portal",
+        "type": "playwright_web",
+        "url": "https://remoteok.com/remote-rpa-jobs",
+        "enabled": true
+      }
+    ],
+    "max_results_per_source": 30
+  },
+  "alert_rules": {
+    "min_salary_usd": 70000,
+    "priority_keywords": ["AI Agent", "RPA", "Playwright", "LLM", "Automation"],
+    "min_match_score": 70
+  },
+  "reporting": {
+    "output_dir": "reports",
+    "excel_filename_prefix": "Job_Market_Intelligence_Report",
+    "html_alert_filename": "alert_notification.html"
+  },
+  "browser_settings": {
+    "headless": true,
+    "timeout_ms": 15000,
+    "slow_mo_ms": 50
+  }
+}

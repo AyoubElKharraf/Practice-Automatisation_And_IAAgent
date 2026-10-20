@@ -1,0 +1,6 @@
+Numero: ENG-2026-0003
+Fournisseur: Lydec - Service Eau et Énergie Casablanca
+Date: 21/09/2026
+Montant: 3127.24 MAD
+Discipline: Énergie & Eau
+Prestation: Consommation électrique basse tension - Mensuel

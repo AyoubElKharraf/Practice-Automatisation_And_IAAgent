@@ -1,0 +1,6 @@
+Numero: FIN-2026-0002
+Fournisseur: RMA Royale Marocaine d'Assurance
+Date: 10/10/2026
+Montant: 880.04 MAD
+Discipline: Finance & Assurance
+Prestation: Frais de gestion de compte et tenue de dossier

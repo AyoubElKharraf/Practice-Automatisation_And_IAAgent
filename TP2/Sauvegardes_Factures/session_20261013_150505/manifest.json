@@ -1,0 +1,254 @@
+{
+  "session_id": "session_20261013_150505",
+  "date_sauvegarde": "2026-10-13 15:05:05",
+  "dossier_source_initial": "C:\\Users\\DELL\\Documents\\Master\\Master_M2I\\SEMESTRE 3\\Automatisation IA_Agent\\TPs\\TP2\\Factures",
+  "nombre_factures": 24,
+  "total_montant_mad": 21666.1,
+  "repartition_disciplines": {
+    "Général": 14,
+    "Finance & Assurance": 5,
+    "Santé": 5
+  },
+  "factures": [
+    {
+      "fichier": "COM-2026-0008.txt",
+      "sha256": "402f8ea7f7cbcb453712efbc640f5ea9eafcad18472e8459b7f34b272204314a",
+      "numero": "COM-2026-0008",
+      "fournisseur": "Inconnu",
+      "discipline": "Général",
+      "date": "",
+      "montant": 0.0,
+      "statut_attendu": "Non déterminé"
+    },
+    {
+      "fichier": "COM-2026-0016.txt",
+      "sha256": "4ad60235b780a59efa16fc2f4bffc48fc6b08942905a05a52c39d36d2537b8a0",
+      "numero": "COM-2026-0016",
+      "fournisseur": "Inconnu",
+      "discipline": "Général",
+      "date": "",
+      "montant": 0.0,
+      "statut_attendu": "Non déterminé"
+    },
+    {
+      "fichier": "EDU-2026-0005.txt",
+      "sha256": "4f57faf80afb00c4ae141d7f89d05cb5c1c5d4a8be14bcdbddfb10267170b42f",
+      "numero": "EDU-2026-0005",
+      "fournisseur": "Inconnu",
+      "discipline": "Général",
+      "date": "",
+      "montant": 0.0,
+      "statut_attendu": "Non déterminé"
+    },
+    {
+      "fichier": "EDU-2026-0013.txt",
+      "sha256": "a13dc95b686cda7b41a121b686377a36330fc2a87a50224d119d8c4e1b4be1d5",
+      "numero": "EDU-2026-0013",
+      "fournisseur": "Inconnu",
+      "discipline": "Général",
+      "date": "",
+      "montant": 0.0,
+      "statut_attendu": "Non déterminé"
+    },
+    {
+      "fichier": "ENG-2026-0003.txt",
+      "sha256": "094e31c888c41b207aaad28e76b81120270972b4223806c7e49654d824c8b970",
+      "numero": "ENG-2026-0003",
+      "fournisseur": "Inconnu",
+      "discipline": "Général",
+      "date": "",
+      "montant": 0.0,
+      "statut_attendu": "Non déterminé"
+    },
+    {
+      "fichier": "ENG-2026-0011.txt",
+      "sha256": "4d4da963c8579e2c9a432e1df3086c27103b6aa7b6cc75981295b9bf3ab4aa0e",
+      "numero": "ENG-2026-0011",
+      "fournisseur": "Inconnu",
+      "discipline": "Général",
+      "date": "",
+      "montant": 0.0,
+      "statut_attendu": "Non déterminé"
+    },
+    {
+      "fichier": "F006.txt",
+      "sha256": "eabb71722126aae93c570a3ef1faa2da289b5e56f818bcbaed5064c2676a97e3",
+      "numero": "F006",
+      "fournisseur": "Inconnu",
+      "discipline": "Général",
+      "date": "",
+      "montant": 0.0,
+      "statut_attendu": "Non déterminé"
+    },
+    {
+      "fichier": "F007.txt",
+      "sha256": "67636b759a0b798728dc22f7132c54afcead18f1d02f67a66557a7aa76302d46",
+      "numero": "F007",
+      "fournisseur": "Inconnu",
+      "discipline": "Général",
+      "date": "",
+      "montant": 0.0,
+      "statut_attendu": "Non déterminé"
+    },
+    {
+      "fichier": "FIN-2026-0002.txt",
+      "sha256": "dee545bca5c184bce3165ac1c55f81e88d3da076fd65cd64632a5355cc240a67",
+      "numero": "FIN-2026-0002",
+      "fournisseur": "Wafa Assurance Entreprise",
+      "discipline": "Finance & Assurance",
+      "date": "11/09/2026",
+      "montant": 4619.89,
+      "statut_attendu": "À contrôler"
+    },
+    {
+      "fichier": "FIN-2026-0004.txt",
+      "sha256": "b0affe62a5e27517df14f42779a550280c1b94d287296f6880000e8b1ad83007",
+      "numero": "FIN-2026-0004",
+      "fournisseur": "Banque Populaire Régionale",
+      "discipline": "Finance & Assurance",
+      "date": "30/08/2026",
+      "montant": 730.02,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "FIN-2026-0006.txt",
+      "sha256": "5d8bf8bfd13a11efecc7680c9f7baf4a7541b6b16f6a415a221511281b4eedb2",
+      "numero": "FIN-2026-0006",
+      "fournisseur": "Sanlam Maroc Assurances",
+      "discipline": "Finance & Assurance",
+      "date": "22/09/2026",
+      "montant": 5771.16,
+      "statut_attendu": "À contrôler"
+    },
+    {
+      "fichier": "FIN-2026-0008.txt",
+      "sha256": "c8a25294d4d43a3a13573a7d75562a77a4243839a8071fcc0982248eefa661f9",
+      "numero": "FIN-2026-0008",
+      "fournisseur": "CIH Bank Services Pro",
+      "discipline": "Finance & Assurance",
+      "date": "05/10/2026",
+      "montant": 645.74,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "FIN-2026-0010.txt",
+      "sha256": "2c7456cf762c0f524476b14be58f4c54fdb8ec2d1ca829e3ea4e3d9dd695e342",
+      "numero": "FIN-2026-0010",
+      "fournisseur": "Wafa Assurance Entreprise",
+      "discipline": "Finance & Assurance",
+      "date": "07/10/2026",
+      "montant": 603.93,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "LOG-2026-0006.txt",
+      "sha256": "a7b3d8cf50b2a3de7b243011eb297be7be6d923eccb04a9dc05641a4835b619c",
+      "numero": "LOG-2026-0006",
+      "fournisseur": "Inconnu",
+      "discipline": "Général",
+      "date": "",
+      "montant": 0.0,
+      "statut_attendu": "Non déterminé"
+    },
+    {
+      "fichier": "LOG-2026-0014.txt",
+      "sha256": "ec504d090901160113f33403450c72afa960058f2096be5a391139991bbf4469",
+      "numero": "LOG-2026-0014",
+      "fournisseur": "Inconnu",
+      "discipline": "Général",
+      "date": "",
+      "montant": 0.0,
+      "statut_attendu": "Non déterminé"
+    },
+    {
+      "fichier": "SAN-2026-0001.txt",
+      "sha256": "619e878a65bc640c53375db8e5e8b9e977f0867c372a1701d305fea61a562f1b",
+      "numero": "SAN-2026-0001",
+      "fournisseur": "Cabinet Dentaire Dr. Amrani",
+      "discipline": "Santé",
+      "date": "04/09/2026",
+      "montant": 3478.07,
+      "statut_attendu": "À contrôler"
+    },
+    {
+      "fichier": "SAN-2026-0003.txt",
+      "sha256": "9433a06dda5a83d40b12c53920678cb7ab957e8df0903d1896045d0b2a0d89d8",
+      "numero": "SAN-2026-0003",
+      "fournisseur": "Clinique Internationale Agdal",
+      "discipline": "Santé",
+      "date": "12/10/2026",
+      "montant": 861.82,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "SAN-2026-0005.txt",
+      "sha256": "4a112d7f6ff8f0490228900c06d4e4a04152e1b6a4661396807aa37988db6514",
+      "numero": "SAN-2026-0005",
+      "fournisseur": "Polyclinique Médicale de Fès",
+      "discipline": "Santé",
+      "date": "31/08/2026",
+      "montant": 3697.78,
+      "statut_attendu": "À contrôler"
+    },
+    {
+      "fichier": "SAN-2026-0007.txt",
+      "sha256": "a94ad70b9339fe98e6a5bdea97e0e95d525df79b4c4aeec269acd9f149f74861",
+      "numero": "SAN-2026-0007",
+      "fournisseur": "Pharmacie Al Manar Tanger",
+      "discipline": "Santé",
+      "date": "18/09/2026",
+      "montant": 679.47,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "SAN-2026-0009.txt",
+      "sha256": "03a78e27ab0ce70b960dfa0fb2a700909e89f229a78492b952a28879be353ed4",
+      "numero": "SAN-2026-0009",
+      "fournisseur": "Centre de Radiologie & Imagerie Al Azhar",
+      "discipline": "Santé",
+      "date": "07/10/2026",
+      "montant": 578.22,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "TEL-2026-0004.txt",
+      "sha256": "5228391a56580b47f3e9d34e91ab4e1e29ddb03e899ea81c82088d49a2a13f1f",
+      "numero": "TEL-2026-0004",
+      "fournisseur": "Inconnu",
+      "discipline": "Général",
+      "date": "",
+      "montant": 0.0,
+      "statut_attendu": "Non déterminé"
+    },
+    {
+      "fichier": "TEL-2026-0012.txt",
+      "sha256": "eafb10af5b593bb3ac874e88e7b17f3fa1f702e38cfd9e7f3703deaf3aa98440",
+      "numero": "TEL-2026-0012",
+      "fournisseur": "Inconnu",
+      "discipline": "Général",
+      "date": "",
+      "montant": 0.0,
+      "statut_attendu": "Non déterminé"
+    },
+    {
+      "fichier": "TRP-2026-0007.txt",
+      "sha256": "9041f973649d8c7eb404024ed5ca2b9f2715399a0efc1199aa47c53630dc413a",
+      "numero": "TRP-2026-0007",
+      "fournisseur": "Inconnu",
+      "discipline": "Général",
+      "date": "",
+      "montant": 0.0,
+      "statut_attendu": "Non déterminé"
+    },
+    {
+      "fichier": "TRP-2026-0015.txt",
+      "sha256": "3503902ada5f94c5a3550edfad0798ad4cd2d9053e66e111e2190fd89b8ab902",
+      "numero": "TRP-2026-0015",
+      "fournisseur": "Inconnu",
+      "discipline": "Général",
+      "date": "",
+      "montant": 0.0,
+      "statut_attendu": "Non déterminé"
+    }
+  ]
+}

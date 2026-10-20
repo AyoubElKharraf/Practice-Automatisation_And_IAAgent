@@ -1,0 +1,175 @@
+{
+  "session_id": "session_20261013_154333",
+  "date_sauvegarde": "2026-10-13 15:43:33",
+  "dossier_source_initial": "C:\\Users\\DELL\\Documents\\Master\\Master_M2I\\SEMESTRE 3\\Automatisation IA_Agent\\TPs\\TP2\\Factures",
+  "nombre_fichiers": 14,
+  "nombre_factures_uniques": 14,
+  "total_montant_mad": 26419.83,
+  "repartition_disciplines": {
+    "Commerce & Fournitures": 1,
+    "Éducation & Formation": 1,
+    "Énergie & Eau": 2,
+    "Général": 2,
+    "Finance & Assurance": 2,
+    "Logement & Immobilier": 1,
+    "Santé": 2,
+    "Télécom & Cloud": 2,
+    "Transport & Logistique": 1
+  },
+  "factures": [
+    {
+      "fichier": "COM-2026-0008.pdf",
+      "format": "pdf",
+      "sha256": "9e261b6f47d0dc1af4303c3307e84747556af82c26e4a6802eefbbd71fe118ca",
+      "numero": "COM-2026-0008",
+      "fournisseur": "Carrefour Market Professionnel",
+      "discipline": "Commerce & Fournitures",
+      "date": "21/09/2026",
+      "montant": 631.98,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "EDU-2026-0005.pdf",
+      "format": "pdf",
+      "sha256": "d0f15db7aaae41fb544e229f2a6c86977f3a0e597c49fe1a0719f4832766e544",
+      "numero": "EDU-2026-0005",
+      "fournisseur": "Université Mohammed V - Formation Continue",
+      "discipline": "Éducation & Formation",
+      "date": "12/10/2026",
+      "montant": 397.74,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "ENG-2026-0003.pdf",
+      "format": "pdf",
+      "sha256": "573b5bd1db5679a4bbedd4437803e4ac46daaa7950d5288c99638dd7ea85b1b9",
+      "numero": "ENG-2026-0003",
+      "fournisseur": "Lydec - Service Eau et Énergie Casablanca",
+      "discipline": "Énergie & Eau",
+      "date": "30/08/2026",
+      "montant": 5159.22,
+      "statut_attendu": "À contrôler"
+    },
+    {
+      "fichier": "ENG-2026-0011.pdf",
+      "format": "pdf",
+      "sha256": "ecfceecf445bd1fd08217aa89cc90c0bcc89f8c1c4291bc0b27356f96c68db02",
+      "numero": "ENG-2026-0011",
+      "fournisseur": "ONEE - Branche Électricité",
+      "discipline": "Énergie & Eau",
+      "date": "10/10/2026",
+      "montant": 257.2,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "F006.txt",
+      "format": "txt",
+      "sha256": "eabb71722126aae93c570a3ef1faa2da289b5e56f818bcbaed5064c2676a97e3",
+      "numero": "F006",
+      "fournisseur": "Inconnu",
+      "discipline": "Général",
+      "date": "",
+      "montant": 0.0,
+      "statut_attendu": "Non déterminé"
+    },
+    {
+      "fichier": "F007.txt",
+      "format": "txt",
+      "sha256": "67636b759a0b798728dc22f7132c54afcead18f1d02f67a66557a7aa76302d46",
+      "numero": "F007",
+      "fournisseur": "Inconnu",
+      "discipline": "Général",
+      "date": "",
+      "montant": 0.0,
+      "statut_attendu": "Non déterminé"
+    },
+    {
+      "fichier": "FIN-2026-0002.pdf",
+      "format": "pdf",
+      "sha256": "417713a7a3a049e28569194a17a65a94675bcee663bcc616eac9c31b4aad5477",
+      "numero": "FIN-2026-0002",
+      "fournisseur": "Attijariwafa Bank - Centre Entreprises",
+      "discipline": "Finance & Assurance",
+      "date": "02/10/2026",
+      "montant": 488.21,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "FIN-2026-0010.pdf",
+      "format": "pdf",
+      "sha256": "cf0459c48b634490e15bdb00dc7f68b2adbdc7ca7867ec04376175a0f8f56491",
+      "numero": "FIN-2026-0010",
+      "fournisseur": "CIH Bank Services Pro",
+      "discipline": "Finance & Assurance",
+      "date": "28/09/2026",
+      "montant": 509.51,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "LOG-2026-0006.pdf",
+      "format": "pdf",
+      "sha256": "23273c2635e570f48e17155d30a2c4ac578e881ae644d8311fd33da9f6c46198",
+      "numero": "LOG-2026-0006",
+      "fournisseur": "Syndic Résidence Les Jardins d'Agdal",
+      "discipline": "Logement & Immobilier",
+      "date": "11/09/2026",
+      "montant": 7781.17,
+      "statut_attendu": "À contrôler"
+    },
+    {
+      "fichier": "SAN-2026-0001.pdf",
+      "format": "pdf",
+      "sha256": "b54682cfc14c5760c0e09ceb390673a2e94161b5659cca79ccc32721fb6d1f14",
+      "numero": "SAN-2026-0001",
+      "fournisseur": "Pharmacie Centrale de Rabat",
+      "discipline": "Santé",
+      "date": "05/09/2026",
+      "montant": 398.14,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "SAN-2026-0009.pdf",
+      "format": "pdf",
+      "sha256": "c48a1c1ad6b798adc17ce7806698c42fd048511b4e1306e0926a5123acdaf374",
+      "numero": "SAN-2026-0009",
+      "fournisseur": "Cabinet d'Ophtalmologie Vision Plus",
+      "discipline": "Santé",
+      "date": "31/08/2026",
+      "montant": 2768.82,
+      "statut_attendu": "À contrôler"
+    },
+    {
+      "fichier": "TEL-2026-0004.pdf",
+      "format": "pdf",
+      "sha256": "d64dc6276f8b59064720bc72bafbdf05f6ca2a2bd6f3b81bf0aea266133f8dd3",
+      "numero": "TEL-2026-0004",
+      "fournisseur": "Microsoft Cloud Maroc",
+      "discipline": "Télécom & Cloud",
+      "date": "15/09/2026",
+      "montant": 4740.79,
+      "statut_attendu": "À contrôler"
+    },
+    {
+      "fichier": "TEL-2026-0012.pdf",
+      "format": "pdf",
+      "sha256": "93c7fc175be646c0bee51a98269b9b42320a488297faa4b65c0548340cfc9857",
+      "numero": "TEL-2026-0012",
+      "fournisseur": "Inwi Entreprises B2B",
+      "discipline": "Télécom & Cloud",
+      "date": "04/10/2026",
+      "montant": 520.95,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "TRP-2026-0007.pdf",
+      "format": "pdf",
+      "sha256": "f751502ac178f8b9920f8b456d2be146b22e00f6076d7920cc67658035cbf352",
+      "numero": "TRP-2026-0007",
+      "fournisseur": "ONCF - Ligne Grande Vitesse Al Boraq",
+      "discipline": "Transport & Logistique",
+      "date": "03/10/2026",
+      "montant": 2766.1,
+      "statut_attendu": "À contrôler"
+    }
+  ]
+}

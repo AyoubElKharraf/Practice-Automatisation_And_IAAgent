@@ -1,0 +1,6 @@
+Numero: TEL-2026-0012
+Fournisseur: Amazon Web Services (AWS) EMEA
+Date: 30/09/2026
+Montant: 682.63 MAD
+Discipline: Télécom & Cloud
+Prestation: Licences SaaS Microsoft 365 Business Standard

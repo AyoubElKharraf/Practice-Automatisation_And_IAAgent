@@ -1,0 +1,6 @@
+Numero: SAN-2026-0003
+Fournisseur: Clinique Internationale Agdal
+Date: 12/10/2026
+Montant: 861.82 MAD
+Discipline: Santé
+Prestation: Soins dentaires et détartrage spécialisé

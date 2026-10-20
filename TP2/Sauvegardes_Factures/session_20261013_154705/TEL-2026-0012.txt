@@ -1,0 +1,6 @@
+Numero: TEL-2026-0012
+Fournisseur: Microsoft Cloud Maroc
+Date: 10/10/2026
+Montant: 674.89 MAD
+Discipline: Télécom & Cloud
+Prestation: Consommation cloud calcul EC2 et stockage S3

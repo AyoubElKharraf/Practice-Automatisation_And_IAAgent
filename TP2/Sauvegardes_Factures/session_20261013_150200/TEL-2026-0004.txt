@@ -1,0 +1,6 @@
+Numero: TEL-2026-0004
+Fournisseur: Amazon Web Services (AWS) EMEA
+Date: 13/09/2026
+Montant: 708.98 MAD
+Discipline: Télécom & Cloud
+Prestation: Hébergement serveurs et certificat SSL annuel

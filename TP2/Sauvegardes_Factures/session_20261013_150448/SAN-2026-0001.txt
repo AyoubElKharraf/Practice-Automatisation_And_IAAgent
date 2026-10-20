@@ -1,0 +1,6 @@
+Numero: SAN-2026-0001
+Fournisseur: Cabinet Dentaire Dr. Amrani
+Date: 05/10/2026
+Montant: 213.88 MAD
+Discipline: Santé
+Prestation: Bilan sanguin complet et sérologie

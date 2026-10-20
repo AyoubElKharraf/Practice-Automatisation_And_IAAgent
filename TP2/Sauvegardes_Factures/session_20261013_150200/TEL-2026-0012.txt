@@ -1,0 +1,6 @@
+Numero: TEL-2026-0012
+Fournisseur: OVHcloud Hébergement Dédié
+Date: 02/10/2026
+Montant: 6532.87 MAD
+Discipline: Télécom & Cloud
+Prestation: Consommation cloud calcul EC2 et stockage S3

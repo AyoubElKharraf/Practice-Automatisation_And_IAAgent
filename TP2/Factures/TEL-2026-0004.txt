@@ -1,0 +1,6 @@
+Numero: TEL-2026-0004
+Fournisseur: Orange Maroc Télécommunications
+Date: 22/09/2026
+Montant: 933.95 MAD
+Discipline: Télécom & Cloud
+Prestation: Licences SaaS Microsoft 365 Business Standard

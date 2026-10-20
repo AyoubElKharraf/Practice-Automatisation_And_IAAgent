@@ -1,0 +1,6 @@
+Numero: TEL-2026-0004
+Fournisseur: Inwi Entreprises B2B
+Date: 10/10/2026
+Montant: 784.37 MAD
+Discipline: Télécom & Cloud
+Prestation: Hébergement serveurs et certificat SSL annuel

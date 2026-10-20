@@ -1,0 +1,120 @@
+2026-10-13 14:42:25 [INFO    ] (data_processor.py:46) Starting ETL Processing for 1 raw records...
+2026-10-13 14:42:25 [INFO    ] (data_processor.py:83) Clean processed dataset saved (1 rows) -> data\processed\processed_dataset_20261013_144225.csv
+2026-10-13 14:42:25 [INFO    ] (data_processor.py:46) Starting ETL Processing for 1 raw records...
+2026-10-13 14:42:25 [INFO    ] (data_processor.py:83) Clean processed dataset saved (1 rows) -> data\processed\processed_dataset_20261013_144225.csv
+2026-10-13 14:42:25 [INFO    ] (excel_reporter.py:51) Generating Executive Excel Report: Job_Market_Intelligence_Report_20261013_144225.xlsx...
+2026-10-13 14:42:25 [INFO    ] (excel_reporter.py:74) Excel Report generated successfully -> reports\Job_Market_Intelligence_Report_20261013_144225.xlsx
+2026-10-13 14:44:38 [INFO    ] (run_bot.py:29) ================================================================
+2026-10-13 14:44:38 [INFO    ] (run_bot.py:30)    🤖 STARTING RPA INTELLIGENCE BOT ORCHESTRATION PIPELINE     
+2026-10-13 14:44:38 [INFO    ] (run_bot.py:31) ================================================================
+2026-10-13 14:44:38 [INFO    ] (run_bot.py:35) [Step 1/5] Loading and validating bot configuration...
+2026-10-13 14:44:38 [INFO    ] (run_bot.py:37) Target Keywords: ['RPA', 'AI Agent', 'Python Developer', 'Automation Engineer', 'Data Scientist']
+2026-10-13 14:44:38 [INFO    ] (run_bot.py:38) Priority Alert Threshold: >= 70% or >= $70,000
+2026-10-13 14:44:38 [INFO    ] (run_bot.py:41) [Step 2/5] Initiating Robotic Data Harvester...
+2026-10-13 14:44:38 [INFO    ] (harvester.py:46) Starting RPA Data Harvesting across 2 configured sources...
+2026-10-13 14:44:38 [INFO    ] (harvester.py:88) [HTTP Harvester] Fetching data from: https://remoteok.com/api
+2026-10-13 14:44:39 [INFO    ] (harvester.py:66) Source 'RemoteOK Live Tech Feed' yielded 30 records.
+2026-10-13 14:44:39 [INFO    ] (harvester.py:125) [Playwright RPA] Launching Chromium browser (headless=True)...
+2026-10-13 14:45:03 [INFO    ] (harvester.py:140) [Playwright RPA] Navigating to: https://remoteok.com/remote-rpa-jobs
+2026-10-13 14:45:10 [INFO    ] (harvester.py:146) [Playwright RPA] Found 49 job table rows on page.
+2026-10-13 14:45:15 [INFO    ] (harvester.py:201) [Playwright RPA] Browser session closed cleanly.
+2026-10-13 14:45:16 [INFO    ] (harvester.py:66) Source 'Playwright Dynamic Web Portal' yielded 30 records.
+2026-10-13 14:45:16 [INFO    ] (harvester.py:219) Raw harvest payload snapshot saved (60 records) -> data\raw\raw_harvest_20261013_144516.json
+2026-10-13 14:45:16 [INFO    ] (run_bot.py:44) Harvester successfully collected 60 raw records.
+2026-10-13 14:45:16 [INFO    ] (run_bot.py:51) [Step 3/5] Starting ETL & Match Scoring pipeline...
+2026-10-13 14:45:16 [INFO    ] (data_processor.py:46) Starting ETL Processing for 60 raw records...
+2026-10-13 14:45:16 [INFO    ] (data_processor.py:74) Deduplicated 21 duplicate job postings.
+2026-10-13 14:45:16 [INFO    ] (data_processor.py:83) Clean processed dataset saved (39 rows) -> data\processed\processed_dataset_20261013_144516.csv
+2026-10-13 14:45:16 [INFO    ] (run_bot.py:55) ETL completed: 39 unique roles, 8 alert matches.
+2026-10-13 14:45:16 [INFO    ] (run_bot.py:58) [Step 4/5] Generating Styled Multi-Sheet Excel Dashboard...
+2026-10-13 14:45:16 [INFO    ] (excel_reporter.py:51) Generating Executive Excel Report: Job_Market_Intelligence_Report_20261013_144516.xlsx...
+2026-10-13 14:45:16 [INFO    ] (excel_reporter.py:74) Excel Report generated successfully -> reports\Job_Market_Intelligence_Report_20261013_144516.xlsx
+2026-10-13 14:45:16 [INFO    ] (run_bot.py:63) [Step 5/5] Dispatching Alerts & Building HTML Digest...
+2026-10-13 14:45:16 [INFO    ] (notifier.py:34) Evaluating alert conditions and generating stakeholder notifications...
+2026-10-13 14:45:16 [INFO    ] (notifier.py:43) HTML Stakeholder Digest created -> reports\alert_notification.html
+2026-10-13 14:45:16 [ERROR   ] (run_bot.py:78) Critical unhandled exception in RPA Bot: 'charmap' codec can't encode character '\U0001f916' in position 10: character maps to <undefined>
+Traceback (most recent call last):
+  File "C:\Users\DELL\Documents\Master\Master_M2I\SEMESTRE 3\Automatisation IA_Agent\TPs\TP3\run_bot.py", line 65, in main
+    html_path = notifier.send_notifications(df_processed, kpis, excel_path)
+  File "C:\Users\DELL\Documents\Master\Master_M2I\SEMESTRE 3\Automatisation IA_Agent\TPs\TP3\bot\notifier.py", line 46, in send_notifications
+    self._print_terminal_banner(alerts_df, kpis)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\Documents\Master\Master_M2I\SEMESTRE 3\Automatisation IA_Agent\TPs\TP3\bot\notifier.py", line 188, in _print_terminal_banner
+    print("          🤖 RPA BOT EXECUTION & ALERT SUMMARY          ")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f916' in position 10: character maps to <undefined>
+2026-10-13 14:46:21 [INFO    ] (run_bot.py:29) ================================================================
+2026-10-13 14:46:21 [INFO    ] (run_bot.py:30)    [RPA BOT] STARTING INTELLIGENCE BOT ORCHESTRATION PIPELINE   
+2026-10-13 14:46:21 [INFO    ] (run_bot.py:31) ================================================================
+2026-10-13 14:46:21 [INFO    ] (run_bot.py:35) [Step 1/5] Loading and validating bot configuration...
+2026-10-13 14:46:21 [INFO    ] (run_bot.py:37) Target Keywords: ['RPA', 'AI Agent', 'Python Developer', 'Automation Engineer', 'Data Scientist']
+2026-10-13 14:46:21 [INFO    ] (run_bot.py:38) Priority Alert Threshold: >= 70% or >= $70,000
+2026-10-13 14:46:21 [INFO    ] (run_bot.py:41) [Step 2/5] Initiating Robotic Data Harvester...
+2026-10-13 14:46:21 [INFO    ] (harvester.py:46) Starting RPA Data Harvesting across 2 configured sources...
+2026-10-13 14:46:21 [INFO    ] (harvester.py:88) [HTTP Harvester] Fetching data from: https://remoteok.com/api
+2026-10-13 14:46:22 [INFO    ] (harvester.py:66) Source 'RemoteOK Live Tech Feed' yielded 30 records.
+2026-10-13 14:46:22 [INFO    ] (harvester.py:125) [Playwright RPA] Launching Chromium browser (headless=True)...
+2026-10-13 14:46:23 [INFO    ] (harvester.py:140) [Playwright RPA] Navigating to: https://remoteok.com/remote-rpa-jobs
+2026-10-13 14:46:27 [INFO    ] (harvester.py:146) [Playwright RPA] Found 49 job table rows on page.
+2026-10-13 14:46:32 [INFO    ] (harvester.py:201) [Playwright RPA] Browser session closed cleanly.
+2026-10-13 14:46:32 [INFO    ] (harvester.py:66) Source 'Playwright Dynamic Web Portal' yielded 30 records.
+2026-10-13 14:46:32 [INFO    ] (harvester.py:219) Raw harvest payload snapshot saved (60 records) -> data\raw\raw_harvest_20261013_144632.json
+2026-10-13 14:46:32 [INFO    ] (run_bot.py:44) Harvester successfully collected 60 raw records.
+2026-10-13 14:46:32 [INFO    ] (run_bot.py:51) [Step 3/5] Starting ETL & Match Scoring pipeline...
+2026-10-13 14:46:32 [INFO    ] (data_processor.py:46) Starting ETL Processing for 60 raw records...
+2026-10-13 14:46:32 [INFO    ] (data_processor.py:74) Deduplicated 21 duplicate job postings.
+2026-10-13 14:46:32 [INFO    ] (data_processor.py:83) Clean processed dataset saved (39 rows) -> data\processed\processed_dataset_20261013_144632.csv
+2026-10-13 14:46:32 [INFO    ] (run_bot.py:55) ETL completed: 39 unique roles, 8 alert matches.
+2026-10-13 14:46:32 [INFO    ] (run_bot.py:58) [Step 4/5] Generating Styled Multi-Sheet Excel Dashboard...
+2026-10-13 14:46:32 [INFO    ] (excel_reporter.py:51) Generating Executive Excel Report: Job_Market_Intelligence_Report_20261013_144632.xlsx...
+2026-10-13 14:46:33 [INFO    ] (excel_reporter.py:74) Excel Report generated successfully -> reports\Job_Market_Intelligence_Report_20261013_144632.xlsx
+2026-10-13 14:46:33 [INFO    ] (run_bot.py:63) [Step 5/5] Dispatching Alerts & Building HTML Digest...
+2026-10-13 14:46:33 [INFO    ] (notifier.py:34) Evaluating alert conditions and generating stakeholder notifications...
+2026-10-13 14:46:33 [INFO    ] (notifier.py:43) HTML Stakeholder Digest created -> reports\alert_notification.html
+2026-10-13 14:46:33 [INFO    ] (run_bot.py:69) ================================================================
+2026-10-13 14:46:33 [INFO    ] (run_bot.py:70)    [SUCCESS] RPA BOT WORKFLOW COMPLETED IN 11.34s
+2026-10-13 14:46:33 [INFO    ] (run_bot.py:71)    [REPORT] Excel Dashboard: C:\Users\DELL\Documents\Master\Master_M2I\SEMESTRE 3\Automatisation IA_Agent\TPs\TP3\reports\Job_Market_Intelligence_Report_20261013_144632.xlsx
+2026-10-13 14:46:33 [INFO    ] (run_bot.py:72)    [DIGEST] HTML Digest    : C:\Users\DELL\Documents\Master\Master_M2I\SEMESTRE 3\Automatisation IA_Agent\TPs\TP3\reports\alert_notification.html
+2026-10-13 14:46:33 [INFO    ] (run_bot.py:73) ================================================================
+2026-10-13 14:48:28 [INFO    ] (data_processor.py:46) Starting ETL Processing for 1 raw records...
+2026-10-13 14:48:28 [INFO    ] (data_processor.py:83) Clean processed dataset saved (1 rows) -> data\processed\processed_dataset_20261013_144828.csv
+2026-10-13 14:48:28 [INFO    ] (data_processor.py:46) Starting ETL Processing for 1 raw records...
+2026-10-13 14:48:28 [INFO    ] (data_processor.py:83) Clean processed dataset saved (1 rows) -> data\processed\processed_dataset_20261013_144828.csv
+2026-10-13 14:48:28 [INFO    ] (excel_reporter.py:51) Generating Executive Excel Report: Job_Market_Intelligence_Report_20261013_144828.xlsx...
+2026-10-13 14:48:28 [INFO    ] (excel_reporter.py:74) Excel Report generated successfully -> reports\Job_Market_Intelligence_Report_20261013_144828.xlsx
+2026-10-13 14:48:38 [INFO    ] (run_bot.py:29) ================================================================
+2026-10-13 14:48:38 [INFO    ] (run_bot.py:30)    [RPA BOT] STARTING INTELLIGENCE BOT ORCHESTRATION PIPELINE   
+2026-10-13 14:48:38 [INFO    ] (run_bot.py:31) ================================================================
+2026-10-13 14:48:38 [INFO    ] (run_bot.py:35) [Step 1/5] Loading and validating bot configuration...
+2026-10-13 14:48:38 [INFO    ] (run_bot.py:37) Target Keywords: ['RPA', 'AI Agent', 'Python Developer', 'Automation Engineer', 'Data Scientist']
+2026-10-13 14:48:38 [INFO    ] (run_bot.py:38) Priority Alert Threshold: >= 70% or >= $70,000
+2026-10-13 14:48:38 [INFO    ] (run_bot.py:41) [Step 2/5] Initiating Robotic Data Harvester...
+2026-10-13 14:48:38 [INFO    ] (harvester.py:46) Starting RPA Data Harvesting across 2 configured sources...
+2026-10-13 14:48:38 [INFO    ] (harvester.py:88) [HTTP Harvester] Fetching data from: https://remoteok.com/api
+2026-10-13 14:48:38 [INFO    ] (harvester.py:66) Source 'RemoteOK Live Tech Feed' yielded 30 records.
+2026-10-13 14:48:38 [INFO    ] (harvester.py:125) [Playwright RPA] Launching Chromium browser (headless=True)...
+2026-10-13 14:48:39 [INFO    ] (harvester.py:140) [Playwright RPA] Navigating to: https://remoteok.com/remote-rpa-jobs
+2026-10-13 14:48:42 [INFO    ] (harvester.py:146) [Playwright RPA] Found 49 job table rows on page.
+2026-10-13 14:48:45 [INFO    ] (harvester.py:201) [Playwright RPA] Browser session closed cleanly.
+2026-10-13 14:48:45 [INFO    ] (harvester.py:66) Source 'Playwright Dynamic Web Portal' yielded 30 records.
+2026-10-13 14:48:45 [INFO    ] (harvester.py:219) Raw harvest payload snapshot saved (60 records) -> data\raw\raw_harvest_20261013_144845.json
+2026-10-13 14:48:45 [INFO    ] (run_bot.py:44) Harvester successfully collected 60 raw records.
+2026-10-13 14:48:45 [INFO    ] (run_bot.py:51) [Step 3/5] Starting ETL & Match Scoring pipeline...
+2026-10-13 14:48:45 [INFO    ] (data_processor.py:46) Starting ETL Processing for 60 raw records...
+2026-10-13 14:48:45 [INFO    ] (data_processor.py:74) Deduplicated 21 duplicate job postings.
+2026-10-13 14:48:45 [INFO    ] (data_processor.py:83) Clean processed dataset saved (39 rows) -> data\processed\processed_dataset_20261013_144845.csv
+2026-10-13 14:48:45 [INFO    ] (run_bot.py:55) ETL completed: 39 unique roles, 8 alert matches.
+2026-10-13 14:48:45 [INFO    ] (run_bot.py:58) [Step 4/5] Generating Styled Multi-Sheet Excel Dashboard...
+2026-10-13 14:48:45 [INFO    ] (excel_reporter.py:51) Generating Executive Excel Report: Job_Market_Intelligence_Report_20261013_144845.xlsx...
+2026-10-13 14:48:46 [INFO    ] (excel_reporter.py:74) Excel Report generated successfully -> reports\Job_Market_Intelligence_Report_20261013_144845.xlsx
+2026-10-13 14:48:46 [INFO    ] (run_bot.py:63) [Step 5/5] Dispatching Alerts & Building HTML Digest...
+2026-10-13 14:48:46 [INFO    ] (notifier.py:34) Evaluating alert conditions and generating stakeholder notifications...
+2026-10-13 14:48:46 [INFO    ] (notifier.py:43) HTML Stakeholder Digest created -> reports\alert_notification.html
+2026-10-13 14:48:46 [INFO    ] (run_bot.py:69) ================================================================
+2026-10-13 14:48:46 [INFO    ] (run_bot.py:70)    [SUCCESS] RPA BOT WORKFLOW COMPLETED IN 8.04s
+2026-10-13 14:48:46 [INFO    ] (run_bot.py:71)    [REPORT] Excel Dashboard: C:\Users\DELL\Documents\Master\Master_M2I\SEMESTRE 3\Automatisation IA_Agent\TPs\TP3\reports\Job_Market_Intelligence_Report_20261013_144845.xlsx
+2026-10-13 14:48:46 [INFO    ] (run_bot.py:72)    [DIGEST] HTML Digest    : C:\Users\DELL\Documents\Master\Master_M2I\SEMESTRE 3\Automatisation IA_Agent\TPs\TP3\reports\alert_notification.html
+2026-10-13 14:48:46 [INFO    ] (run_bot.py:73) ================================================================

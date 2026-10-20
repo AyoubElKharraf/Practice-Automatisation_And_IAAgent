@@ -1,0 +1,6 @@
+Numero: ENG-2026-0003
+Fournisseur: TotalEnergies Gaz Industriel
+Date: 23/09/2026
+Montant: 2709.84 MAD
+Discipline: Énergie & Eau
+Prestation: Livraison gaz propane / butane pour chauffage

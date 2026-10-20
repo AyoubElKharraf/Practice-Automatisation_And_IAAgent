@@ -1,0 +1,16 @@
+# ==============================================================================
+# TP RPA - Automatisation du traitement des factures
+# Dépendances requises
+# ==============================================================================
+
+# Manipulation et structuration des données en DataFrame
+pandas>=2.0.0
+
+# Moteur d'exportation pour les fichiers Excel (.xlsx)
+openpyxl>=3.1.0
+
+# Traitement, génération et extraction de factures au format PDF
+PyMuPDF>=1.24.0
+
+# Framework de tests (optionnel mais recommandé pour les tests)
+pytest>=7.0.0

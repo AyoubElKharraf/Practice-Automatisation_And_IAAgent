@@ -1,0 +1,2 @@
+source,title,company,location,salary_raw,tags,description,url,date_posted,harvest_method,salary_min,salary_max,salary_estimated,skills_detected,skills_str,match_score,is_alert
+UnitTest,Lead RPA Engineer,AutoCo,Remote,"$100,000","['RPA', 'UiPath']",RPA enterprise systems.,https://example.com/job2,2026-10-13,TEST,100000.0,100000.0,100000.0,"['RPA', 'UiPath']","RPA, UiPath",55,True

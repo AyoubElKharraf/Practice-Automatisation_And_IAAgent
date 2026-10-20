@@ -1,0 +1,205 @@
+"""
+bot/notifier.py - Alert and Notification dispatching engine.
+Generates responsive HTML email digests and formatted console alerts for RPA stakeholders.
+"""
+
+from datetime import datetime
+from pathlib import Path
+from typing import Any, Dict
+
+import pandas as pd
+
+from bot.config import BotConfig
+from bot.logger import BotLogger
+
+logger = BotLogger.get_logger()
+
+
+class Notifier:
+    """
+    RPA Alert Notifier that produces stakeholder digest reports
+    and triggers instant notifications on criteria matches.
+    """
+
+    def __init__(self, config: BotConfig):
+        self.config = config
+        self.reports_dir = self.config.output_dir
+
+    def send_notifications(
+        self, df: pd.DataFrame, kpis: Dict[str, Any], excel_path: Path
+    ) -> Path:
+        """
+        Dispatches alerts across channels and saves the HTML Executive Digest.
+        """
+        logger.info("Evaluating alert conditions and generating stakeholder notifications...")
+
+        alerts_df = df[df["is_alert"] == True] if not df.empty else pd.DataFrame()
+        html_content = self._render_html_digest(df, alerts_df, kpis, excel_path)
+
+        html_filepath = self.reports_dir / self.config.html_alert_filename
+        with open(html_filepath, "w", encoding="utf-8") as f:
+            f.write(html_content)
+
+        logger.info(f"HTML Stakeholder Digest created -> {html_filepath}")
+
+        # Display terminal banner summary
+        self._print_terminal_banner(alerts_df, kpis)
+
+        return html_filepath
+
+    def _render_html_digest(
+        self, df: pd.DataFrame, alerts_df: pd.DataFrame, kpis: Dict[str, Any], excel_path: Path
+    ) -> str:
+        """
+        Generates clean, modern HTML with inline CSS for universal email client compatibility.
+        """
+        now_str = datetime.now().strftime("%Y-%m-%d %H:%M")
+        alert_rows_html = ""
+
+        if not alerts_df.empty:
+            for _, r in alerts_df.head(8).iterrows():
+                sal = r.get("salary_estimated", 0)
+                sal_badge = f"${sal:,.0f}/yr" if sal > 0 else "Disclosed in Post"
+                skills = r.get("skills_str", "")
+                url = r.get("url", "#")
+
+                alert_rows_html += f"""
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                    <td style="padding: 12px 14px; font-weight: 600; color: #1e293b;">
+                        <a href="{url}" style="color: #2563eb; text-decoration: none;">{r.get('title', '')}</a>
+                    </td>
+                    <td style="padding: 12px 14px; color: #475569;">{r.get('company', '')}</td>
+                    <td style="padding: 12px 14px; color: #475569;">{r.get('location', '')}</td>
+                    <td style="padding: 12px 14px;">
+                        <span style="background-color: #dcfce7; color: #166534; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 600;">
+                            {sal_badge}
+                        </span>
+                    </td>
+                    <td style="padding: 12px 14px; text-align: center;">
+                        <span style="background-color: #dbeafe; color: #1e40af; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 600;">
+                            {r.get('match_score', 0)}%
+                        </span>
+                    </td>
+                    <td style="padding: 12px 14px; font-size: 12px; color: #64748b;">{skills}</td>
+                </tr>
+                """
+        else:
+            alert_rows_html = """
+            <tr>
+                <td colspan="6" style="padding: 20px; text-align: center; color: #64748b;">
+                    No urgent alert criteria triggered for this cycle.
+                </td>
+            </tr>
+            """
+
+        return f"""<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{self.config.project_name} - Executive Alert</title>
+</head>
+<body style="margin: 0; padding: 24px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f1f5f9; color: #0f172a;">
+    <div style="max-width: 860px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);">
+        
+        <!-- Header -->
+        <div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 32px 36px; color: #ffffff;">
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: #94a3b8; font-weight: 700;">
+                Master M2I RPA Intelligence Bot • TP3
+            </div>
+            <h1 style="margin: 8px 0 0 0; font-size: 24px; font-weight: 700; color: #ffffff;">
+                🚀 Market & Job Intelligence Executive Digest
+            </h1>
+            <p style="margin: 8px 0 0 0; font-size: 14px; color: #cbd5e1;">
+                Run Timestamp: {now_str} | Generated by Autonomous Python RPA Engine
+            </p>
+        </div>
+
+        <!-- KPI Cards Grid -->
+        <div style="padding: 24px 36px; background-color: #f8fafc; border-bottom: 1px solid #e2e8f0;">
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+                <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; text-align: center;">
+                    <div style="font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase;">Total Harvested</div>
+                    <div style="font-size: 24px; font-weight: 800; color: #2563eb; margin-top: 4px;">{kpis.get('total_jobs', 0)}</div>
+                </div>
+                <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; text-align: center;">
+                    <div style="font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase;">Priority Alerts</div>
+                    <div style="font-size: 24px; font-weight: 800; color: #16a34a; margin-top: 4px;">{kpis.get('alert_count', 0)}</div>
+                </div>
+                <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; text-align: center;">
+                    <div style="font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase;">Benchmark Salary</div>
+                    <div style="font-size: 22px; font-weight: 800; color: #0f172a; margin-top: 4px;">
+                        ${kpis.get('avg_salary', 0):,.0f}
+                    </div>
+                </div>
+                <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; text-align: center;">
+                    <div style="font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase;">Top Market Skill</div>
+                    <div style="font-size: 20px; font-weight: 800; color: #7c3aed; margin-top: 4px;">{kpis.get('top_skill', 'Python')}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table Content -->
+        <div style="padding: 32px 36px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <h2 style="font-size: 18px; font-weight: 700; margin: 0; color: #1e293b;">
+                    🎯 Immediate Priority Matches ({len(alerts_df)} Opportunities)
+                </h2>
+                <span style="font-size: 12px; color: #64748b;">Threshold: &ge; {self.config.min_match_score}% Match or &ge; ${self.config.min_salary_usd:,.0f}</span>
+            </div>
+
+            <table style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left;">
+                <thead>
+                    <tr style="background-color: #f1f5f9; color: #475569; font-weight: 700; font-size: 11px; text-transform: uppercase;">
+                        <th style="padding: 10px 14px;">Role Title</th>
+                        <th style="padding: 10px 14px;">Company</th>
+                        <th style="padding: 10px 14px;">Location</th>
+                        <th style="padding: 10px 14px;">Salary</th>
+                        <th style="padding: 10px 14px; text-align: center;">Score</th>
+                        <th style="padding: 10px 14px;">Detected Tech</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {alert_rows_html}
+                </tbody>
+            </table>
+
+            <!-- Attachment Note -->
+            <div style="margin-top: 28px; padding: 16px 20px; background-color: #eff6ff; border-left: 4px solid #2563eb; border-radius: 4px;">
+                <div style="font-weight: 600; color: #1e40af; font-size: 14px;">📁 Complete Excel Workbook Available</div>
+                <div style="font-size: 12px; color: #3b82f6; margin-top: 4px;">
+                    Full analytical multi-sheet workbook generated at: <code>{excel_path.name}</code> with native chart and raw data tabs.
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="padding: 20px 36px; background-color: #f8fafc; border-top: 1px solid #e2e8f0; font-size: 12px; color: #94a3b8; text-align: center;">
+            Master M2I • Automatisation IA & Agent • Academic Lab TP3 • All rights reserved
+        </div>
+    </div>
+</body>
+</html>"""
+
+    def _print_terminal_banner(self, alerts_df: pd.DataFrame, kpis: Dict[str, Any]) -> None:
+        """
+        Prints an eye-catching executive summary in the console (safe for all encodings).
+        """
+        banner_line = "=" * 65
+        print("\n" + banner_line)
+        print("          [RPA BOT] EXECUTION & ALERT SUMMARY          ")
+        print(banner_line)
+        print(f"  * Total Roles Harvested : {kpis.get('total_jobs', 0)}")
+        print(f"  * Priority Match Alerts : {kpis.get('alert_count', 0)}")
+        print(f"  * Average Benchmark Sal : ${kpis.get('avg_salary', 0):,.0f}")
+        print(f"  * Leading Market Skill  : {kpis.get('top_skill', 'N/A')}")
+        print(f"  * Top Hiring Location   : {kpis.get('top_location', 'N/A')}")
+        print("-" * 65)
+
+        if not alerts_df.empty:
+            print("  >> TOP ALERT OPPORTUNITIES:")
+            for idx, (_, r) in enumerate(alerts_df.head(3).iterrows(), 1):
+                sal = f"${r.get('salary_estimated', 0):,.0f}" if r.get('salary_estimated', 0) > 0 else "Disclosed"
+                title = str(r.get('title', '')).encode('ascii', 'replace').decode('ascii')
+                company = str(r.get('company', '')).encode('ascii', 'replace').decode('ascii')
+                print(f"    [{idx}] {title} @ {company} ({sal}) - Score: {r.get('match_score')}%")
+        print(banner_line + "\n")

@@ -1,0 +1,6 @@
+Numero: TEL-2026-0012
+Fournisseur: Microsoft Cloud Maroc
+Date: 20/09/2026
+Montant: 729.86 MAD
+Discipline: Télécom & Cloud
+Prestation: Abonnement Fibre Optique Dédiée 500 Mbps

@@ -1,0 +1,39 @@
+# Environnement Python local
+.venv/
+venv/
+env/
+
+# Fichiers Python générés
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Secrets et configuration locale
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Données personnelles ou locales
+contacts.xlsx
+
+# Document du sujet : ne publier que si tu en as le droit
+TP 1 RPA.pdf
+
+# Fichiers temporaires et journaux
+*.log
+*.tmp
+*.bak
+
+# Résultats de tests / automatisation
+.pytest_cache/
+.playwright/
+test-results/
+playwright-report/
+
+# Fichiers d'éditeur et système
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini

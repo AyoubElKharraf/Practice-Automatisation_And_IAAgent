@@ -1,0 +1,175 @@
+{
+  "session_id": "session_20261013_154659",
+  "date_sauvegarde": "2026-10-13 15:46:59",
+  "dossier_source_initial": "C:\\Users\\DELL\\Documents\\Master\\Master_M2I\\SEMESTRE 3\\Automatisation IA_Agent\\TPs\\TP2\\Factures",
+  "nombre_fichiers": 14,
+  "nombre_factures_uniques": 14,
+  "total_montant_mad": 28445.26,
+  "repartition_disciplines": {
+    "Commerce & Fournitures": 1,
+    "Éducation & Formation": 1,
+    "Énergie & Eau": 2,
+    "Général": 2,
+    "Finance & Assurance": 2,
+    "Logement & Immobilier": 1,
+    "Santé": 2,
+    "Télécom & Cloud": 2,
+    "Transport & Logistique": 1
+  },
+  "factures": [
+    {
+      "fichier": "COM-2026-0008.pdf",
+      "format": "pdf",
+      "sha256": "20175be7f8e00b885f03ac57054fb2b3e5f96212abf17cf47dcc1955bf648825",
+      "numero": "COM-2026-0008",
+      "fournisseur": "Office Dépôt Maroc",
+      "discipline": "Commerce & Fournitures",
+      "date": "11/10/2026",
+      "montant": 1296.36,
+      "statut_attendu": "À contrôler"
+    },
+    {
+      "fichier": "EDU-2026-0005.pdf",
+      "format": "pdf",
+      "sha256": "9de3997c855be365252054ed03947802437e4c8a1c444edb944ca8287db77b42",
+      "numero": "EDU-2026-0005",
+      "fournisseur": "Centre International de Langues & Certifications",
+      "discipline": "Éducation & Formation",
+      "date": "09/09/2026",
+      "montant": 5038.67,
+      "statut_attendu": "À contrôler"
+    },
+    {
+      "fichier": "ENG-2026-0003.pdf",
+      "format": "pdf",
+      "sha256": "f77e4316b90f7887fa997e70815105147b57b61e224ccd43bdeef07c89856c01",
+      "numero": "ENG-2026-0003",
+      "fournisseur": "ONEE - Branche Électricité",
+      "discipline": "Énergie & Eau",
+      "date": "30/09/2026",
+      "montant": 335.77,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "ENG-2026-0011.pdf",
+      "format": "pdf",
+      "sha256": "3f63c6b945452eb54b09b1045abf8a4ebf98e3901a9dbd4221ac793f10509d20",
+      "numero": "ENG-2026-0011",
+      "fournisseur": "Amendis Tanger Tétouan",
+      "discipline": "Énergie & Eau",
+      "date": "07/09/2026",
+      "montant": 5128.02,
+      "statut_attendu": "À contrôler"
+    },
+    {
+      "fichier": "F006.txt",
+      "format": "txt",
+      "sha256": "eabb71722126aae93c570a3ef1faa2da289b5e56f818bcbaed5064c2676a97e3",
+      "numero": "F006",
+      "fournisseur": "Inconnu",
+      "discipline": "Général",
+      "date": "",
+      "montant": 0.0,
+      "statut_attendu": "Non déterminé"
+    },
+    {
+      "fichier": "F007.txt",
+      "format": "txt",
+      "sha256": "67636b759a0b798728dc22f7132c54afcead18f1d02f67a66557a7aa76302d46",
+      "numero": "F007",
+      "fournisseur": "Inconnu",
+      "discipline": "Général",
+      "date": "",
+      "montant": 0.0,
+      "statut_attendu": "Non déterminé"
+    },
+    {
+      "fichier": "FIN-2026-0002.pdf",
+      "format": "pdf",
+      "sha256": "10e6f6cc92164f9e09335681f14a17e5a5187a971fa2e8c00597cfc2d84d7325",
+      "numero": "FIN-2026-0002",
+      "fournisseur": "Attijariwafa Bank - Centre Entreprises",
+      "discipline": "Finance & Assurance",
+      "date": "07/09/2026",
+      "montant": 315.76,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "FIN-2026-0010.pdf",
+      "format": "pdf",
+      "sha256": "b434374d30c6906dcb823a7421343ef38c557ef98c198a9ad847fc68bbf823f1",
+      "numero": "FIN-2026-0010",
+      "fournisseur": "Banque Populaire Régionale",
+      "discipline": "Finance & Assurance",
+      "date": "23/09/2026",
+      "montant": 3631.15,
+      "statut_attendu": "À contrôler"
+    },
+    {
+      "fichier": "LOG-2026-0006.pdf",
+      "format": "pdf",
+      "sha256": "6fc5a9ff53308845c895456656b817ecf3179b8f53dd1c8d6001a53461dfe3ce",
+      "numero": "LOG-2026-0006",
+      "fournisseur": "Services Nettoyage & Entretien Pro",
+      "discipline": "Logement & Immobilier",
+      "date": "26/09/2026",
+      "montant": 8941.46,
+      "statut_attendu": "À contrôler"
+    },
+    {
+      "fichier": "SAN-2026-0001.pdf",
+      "format": "pdf",
+      "sha256": "de6af97604b39602c72f9e4cf35a998b6b7e40afeaf5fe1eac5bddd81ed2ae57",
+      "numero": "SAN-2026-0001",
+      "fournisseur": "Laboratoire d'Analyses Ibn Sina",
+      "discipline": "Santé",
+      "date": "30/08/2026",
+      "montant": 731.78,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "SAN-2026-0009.pdf",
+      "format": "pdf",
+      "sha256": "7a27180c05f77ea80aabece9daeda1f69bb238058eadf931b7eff1801359db83",
+      "numero": "SAN-2026-0009",
+      "fournisseur": "Cabinet d'Ophtalmologie Vision Plus",
+      "discipline": "Santé",
+      "date": "24/09/2026",
+      "montant": 1724.89,
+      "statut_attendu": "À contrôler"
+    },
+    {
+      "fichier": "TEL-2026-0004.pdf",
+      "format": "pdf",
+      "sha256": "c7c358a4a214bd4d843f62d15533d749fc61115da10b17817123b2d4379b32ff",
+      "numero": "TEL-2026-0004",
+      "fournisseur": "Microsoft Cloud Maroc",
+      "discipline": "Télécom & Cloud",
+      "date": "07/09/2026",
+      "montant": 289.0,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "TEL-2026-0012.pdf",
+      "format": "pdf",
+      "sha256": "ce2846210b4d7f96339be1baf4278c27a5f2e46066c1f042ce93ba3237dfdae1",
+      "numero": "TEL-2026-0012",
+      "fournisseur": "Inwi Entreprises B2B",
+      "discipline": "Télécom & Cloud",
+      "date": "23/09/2026",
+      "montant": 430.39,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "TRP-2026-0007.pdf",
+      "format": "pdf",
+      "sha256": "c9f9dbf6af1e3241f16278708f9357e4e6eb86321ac2af0543a6dd437ae03003",
+      "numero": "TRP-2026-0007",
+      "fournisseur": "TotalEnergies Marketing Maroc",
+      "discipline": "Transport & Logistique",
+      "date": "04/09/2026",
+      "montant": 582.01,
+      "statut_attendu": "Normal"
+    }
+  ]
+}

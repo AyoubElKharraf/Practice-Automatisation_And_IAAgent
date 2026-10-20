@@ -1,0 +1,6 @@
+Numero: FIN-2026-0004
+Fournisseur: Banque Populaire Régionale
+Date: 30/08/2026
+Montant: 730.02 MAD
+Discipline: Finance & Assurance
+Prestation: Cotisation mutuelle santé complémentaire groupe

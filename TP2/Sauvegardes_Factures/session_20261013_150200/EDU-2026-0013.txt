@@ -1,0 +1,6 @@
+Numero: EDU-2026-0013
+Fournisseur: École Nationale Supérieure d'Informatique (ENSIAS)
+Date: 01/10/2026
+Montant: 6051.25 MAD
+Discipline: Éducation & Formation
+Prestation: Programme exécutif Data Science & IA appliquée

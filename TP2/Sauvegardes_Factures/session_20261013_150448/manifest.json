@@ -1,0 +1,200 @@
+{
+  "session_id": "session_20261013_150448",
+  "date_sauvegarde": "2026-10-13 15:04:48",
+  "dossier_source_initial": "C:\\Users\\DELL\\Documents\\Master\\Master_M2I\\SEMESTRE 3\\Automatisation IA_Agent\\TPs\\TP2\\Factures",
+  "nombre_factures": 18,
+  "total_montant_mad": 22043.21,
+  "repartition_disciplines": {
+    "Commerce & Fournitures": 2,
+    "Éducation & Formation": 2,
+    "Énergie & Eau": 2,
+    "Général": 2,
+    "Finance & Assurance": 2,
+    "Logement & Immobilier": 2,
+    "Santé": 2,
+    "Télécom & Cloud": 2,
+    "Transport & Logistique": 2
+  },
+  "factures": [
+    {
+      "fichier": "COM-2026-0008.txt",
+      "sha256": "f396b32b894dcada07ebc5e974df4d8e702bddc6b4e231b852852fa6559a5304",
+      "numero": "COM-2026-0008",
+      "fournisseur": "Electroplanet Équipement Bureautique",
+      "discipline": "Commerce & Fournitures",
+      "date": "30/08/2026",
+      "montant": 281.89,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "COM-2026-0016.txt",
+      "sha256": "3aae75152413fe304c0b14be427aac0a4dd9a126f3d29a42a1b80ed66bbe1206",
+      "numero": "COM-2026-0016",
+      "fournisseur": "Office Dépôt Maroc",
+      "discipline": "Commerce & Fournitures",
+      "date": "08/10/2026",
+      "montant": 209.63,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "EDU-2026-0005.txt",
+      "sha256": "991848d0129c44671da4d3d4a852ba6d2cf0e596e74d100fae228f99edd02a4a",
+      "numero": "EDU-2026-0005",
+      "fournisseur": "Institut Marocain des Hautes Études",
+      "discipline": "Éducation & Formation",
+      "date": "30/09/2026",
+      "montant": 2175.73,
+      "statut_attendu": "À contrôler"
+    },
+    {
+      "fichier": "EDU-2026-0013.txt",
+      "sha256": "178b7c231fb79d881ff4ecfcdbf1c110033aa99498aa4aac3d046c06d9e844a9",
+      "numero": "EDU-2026-0013",
+      "fournisseur": "Coursera Campus Global",
+      "discipline": "Éducation & Formation",
+      "date": "08/09/2026",
+      "montant": 4059.9,
+      "statut_attendu": "À contrôler"
+    },
+    {
+      "fichier": "ENG-2026-0003.txt",
+      "sha256": "feecb59b87b2e16405e03833eaada97d29344f6a545d71795092d48bc388d8e8",
+      "numero": "ENG-2026-0003",
+      "fournisseur": "TotalEnergies Gaz Industriel",
+      "discipline": "Énergie & Eau",
+      "date": "23/09/2026",
+      "montant": 2709.84,
+      "statut_attendu": "À contrôler"
+    },
+    {
+      "fichier": "ENG-2026-0011.txt",
+      "sha256": "c730c6177e8300e2a6b13d3ad4c921d3b720e54b3788155ac67c6a580cae1f32",
+      "numero": "ENG-2026-0011",
+      "fournisseur": "TotalEnergies Gaz Industriel",
+      "discipline": "Énergie & Eau",
+      "date": "21/09/2026",
+      "montant": 813.34,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "F006.txt",
+      "sha256": "eabb71722126aae93c570a3ef1faa2da289b5e56f818bcbaed5064c2676a97e3",
+      "numero": "F006",
+      "fournisseur": "Inconnu",
+      "discipline": "Général",
+      "date": "",
+      "montant": 0.0,
+      "statut_attendu": "Non déterminé"
+    },
+    {
+      "fichier": "F007.txt",
+      "sha256": "67636b759a0b798728dc22f7132c54afcead18f1d02f67a66557a7aa76302d46",
+      "numero": "F007",
+      "fournisseur": "Inconnu",
+      "discipline": "Général",
+      "date": "",
+      "montant": 0.0,
+      "statut_attendu": "Non déterminé"
+    },
+    {
+      "fichier": "FIN-2026-0002.txt",
+      "sha256": "e51f74c32669899bfa2515dc044d89a142e31bd08d6e0cd19dee526dca465a52",
+      "numero": "FIN-2026-0002",
+      "fournisseur": "RMA Royale Marocaine d'Assurance",
+      "discipline": "Finance & Assurance",
+      "date": "10/10/2026",
+      "montant": 880.04,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "FIN-2026-0010.txt",
+      "sha256": "f476b0d8267b31a3e708cbf9a346c7dc3d4031a5a100fbe7fe5b4475ec297ec5",
+      "numero": "FIN-2026-0010",
+      "fournisseur": "CIH Bank Services Pro",
+      "discipline": "Finance & Assurance",
+      "date": "07/10/2026",
+      "montant": 886.39,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "LOG-2026-0006.txt",
+      "sha256": "34765016ec115eb1ac533806c638319756b187fc10703a96e0c69ad17ad08201",
+      "numero": "LOG-2026-0006",
+      "fournisseur": "Société Foncière & Immobilière Marocaine",
+      "discipline": "Logement & Immobilier",
+      "date": "14/09/2026",
+      "montant": 745.2,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "LOG-2026-0014.txt",
+      "sha256": "1445389da6becab0628eff9f5a3b269cc1b3d26ca7491d812d4458ff403b5165",
+      "numero": "LOG-2026-0014",
+      "fournisseur": "Société Foncière & Immobilière Marocaine",
+      "discipline": "Logement & Immobilier",
+      "date": "05/09/2026",
+      "montant": 4484.23,
+      "statut_attendu": "À contrôler"
+    },
+    {
+      "fichier": "SAN-2026-0001.txt",
+      "sha256": "1a647445161c8ba969e7ef7174055fb7084e454828f0d6bec6fa4eb5ec9351c0",
+      "numero": "SAN-2026-0001",
+      "fournisseur": "Cabinet Dentaire Dr. Amrani",
+      "discipline": "Santé",
+      "date": "05/10/2026",
+      "montant": 213.88,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "SAN-2026-0009.txt",
+      "sha256": "d72c4dae8eb7a213304f0750b5d02957962948d9ccac9870230770c3c95aa2ab",
+      "numero": "SAN-2026-0009",
+      "fournisseur": "Laboratoire d'Analyses Ibn Sina",
+      "discipline": "Santé",
+      "date": "27/09/2026",
+      "montant": 847.7,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "TEL-2026-0004.txt",
+      "sha256": "8142395570e979debef0b9d87cc1992188d23ed6997299644fe8df767955b8fd",
+      "numero": "TEL-2026-0004",
+      "fournisseur": "OVHcloud Hébergement Dédié",
+      "discipline": "Télécom & Cloud",
+      "date": "08/09/2026",
+      "montant": 339.46,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "TEL-2026-0012.txt",
+      "sha256": "60bf994c0126847f2a39305f3b2e9f0077d963397501e760784004dce20115b2",
+      "numero": "TEL-2026-0012",
+      "fournisseur": "Amazon Web Services (AWS) EMEA",
+      "discipline": "Télécom & Cloud",
+      "date": "30/09/2026",
+      "montant": 682.63,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "TRP-2026-0007.txt",
+      "sha256": "8dc431b7c01a543fe95e5622233b38a0f32532c36e7dc35fbe797a4d4b904837",
+      "numero": "TRP-2026-0007",
+      "fournisseur": "CTM - Messagerie Express et Colis",
+      "discipline": "Transport & Logistique",
+      "date": "15/09/2026",
+      "montant": 753.49,
+      "statut_attendu": "Normal"
+    },
+    {
+      "fichier": "TRP-2026-0015.txt",
+      "sha256": "4b8612ef0e4cd8451749a02c3e3f658c221e5249e471093b33dd84566b91c901",
+      "numero": "TRP-2026-0015",
+      "fournisseur": "ONCF - Ligne Grande Vitesse Al Boraq",
+      "discipline": "Transport & Logistique",
+      "date": "20/09/2026",
+      "montant": 1959.86,
+      "statut_attendu": "À contrôler"
+    }
+  ]
+}

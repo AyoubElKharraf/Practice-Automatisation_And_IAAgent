@@ -1,0 +1,4 @@
+Numero: F006
+Fournisseur: Facture Incomplete
+Date: 06/10/2026
+Montant: 
