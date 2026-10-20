@@ -1,10 +1,5 @@
 """
-TP 4 : Web Scraping and ETL Automation
-Master IADS - M2I, S3 - Automation & Agentic AI
-Prof. Imane Lahbari
-
-Pipeline ETL complet pour la collecte, le nettoyage et l'exportation
-des données de livres depuis http://books.toscrape.com/
+                            TP 4 : Web Scraping and ETL Automation
 """
 
 import re
