@@ -260,7 +260,8 @@ def step2_tokenization_and_embeddings(
 # ==============================================================================
 def step3_text_generation_and_probabilities(
     prompt: str = "The future of artificial intelligence is",
-    model_name: str = "gpt2"
+    model_name: str = "gpt2",
+    max_new_tokens: int = 30
 ):
     """
     Montre comment le LLM calcule les logits, produit une distribution de probabilités,
@@ -328,7 +329,7 @@ def step3_text_generation_and_probabilities(
     # A. Greedy Search
     greedy_ids = causal_model.generate(
         input_ids,
-        max_new_tokens=25,
+        max_new_tokens=max_new_tokens,
         do_sample=False,
         pad_token_id=tokenizer.eos_token_id
     )
@@ -338,7 +339,7 @@ def step3_text_generation_and_probabilities(
     # B. Temperature Sampling (T = 0.7)
     sample_temp_ids = causal_model.generate(
         input_ids,
-        max_new_tokens=25,
+        max_new_tokens=max_new_tokens,
         do_sample=True,
         temperature=0.7,
         pad_token_id=tokenizer.eos_token_id
@@ -349,7 +350,7 @@ def step3_text_generation_and_probabilities(
     # C. Top-K Sampling (k = 50)
     topk_ids = causal_model.generate(
         input_ids,
-        max_new_tokens=25,
+        max_new_tokens=max_new_tokens,
         do_sample=True,
         top_k=50,
         temperature=0.8,
@@ -361,7 +362,7 @@ def step3_text_generation_and_probabilities(
     # D. Top-P (Nucleus) Sampling (p = 0.90)
     topp_ids = causal_model.generate(
         input_ids,
-        max_new_tokens=25,
+        max_new_tokens=max_new_tokens,
         do_sample=True,
         top_p=0.90,
         temperature=0.8,
@@ -584,6 +585,18 @@ def main():
         default="gpt2",
         help="Nom du modèle Hugging Face pré-entraîné à utiliser (défaut : 'gpt2')."
     )
+    parser.add_argument(
+        "--prompt",
+        type=str,
+        default="The future of artificial intelligence is",
+        help="Phrase ou prompt de départ pour la génération de texte (étape 3)."
+    )
+    parser.add_argument(
+        "--max-tokens",
+        type=int,
+        default=30,
+        help="Nombre maximal de nouveaux tokens à générer (défaut : 30)."
+    )
     args = parser.parse_args()
 
     print("\n" + "#" * 80)
@@ -596,7 +609,7 @@ def main():
     elif args.step == 2:
         step2_tokenization_and_embeddings(model_name=args.model)
     elif args.step == 3:
-        step3_text_generation_and_probabilities(model_name=args.model)
+        step3_text_generation_and_probabilities(prompt=args.prompt, model_name=args.model, max_new_tokens=args.max_tokens)
     elif args.step == 4:
         step4_attention_visualization(model_name=args.model)
     elif args.step == 5:
@@ -605,7 +618,7 @@ def main():
         # Exécution intégrale
         step1_introduction(args.model)
         step2_tokenization_and_embeddings(model_name=args.model)
-        step3_text_generation_and_probabilities(model_name=args.model)
+        step3_text_generation_and_probabilities(prompt=args.prompt, model_name=args.model, max_new_tokens=args.max_tokens)
         step4_attention_visualization(model_name=args.model)
         step5_discussion_and_analysis(model_name=args.model)
 
