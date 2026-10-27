@@ -3,3 +3,8 @@ openpyxl
 selenium
 playwright
 pyautogui
+torch
+transformers
+sentencepiece
+matplotlib
+seaborn
