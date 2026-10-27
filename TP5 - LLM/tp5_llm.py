@@ -20,7 +20,7 @@ from pathlib import Path
 from typing import List, Tuple, Dict, Any
 
 # Forcer l'encodage UTF-8 sur Windows
-if sys.stdout.encoding.lower() != "utf-8":
+if sys.stdout.encoding and sys.stdout.encoding.lower() != "utf-8":
     try:
         sys.stdout.reconfigure(encoding="utf-8")
         sys.stderr.reconfigure(encoding="utf-8")
@@ -31,7 +31,6 @@ import torch
 import torch.nn.functional as F
 import numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns
 from transformers import AutoTokenizer, AutoModel, AutoModelForCausalLM
 
 # Définition des dossiers
@@ -39,27 +38,89 @@ BASE_DIR = Path(__file__).resolve().parent
 VIS_DIR = BASE_DIR / "visualisations"
 VIS_DIR.mkdir(parents=True, exist_ok=True)
 
-# Configuration de l'affichage Matplotlib / Seaborn
+# Configuration de l'affichage Matplotlib
 plt.rcParams.update({
     "font.family": "sans-serif",
     "font.size": 10,
     "axes.titlesize": 12,
     "axes.labelsize": 10,
     "figure.titlesize": 14,
-    "figure.autolayout": True,
 })
 
 
 def print_banner(title: str, step_num: int = None):
     """Affiche une bannière formatée pour délimiter les étapes."""
     separator = "=" * 80
-    sub_sep = "-" * 80
     print(f"\n{separator}")
     if step_num is not None:
         print(f"  ÉTAPE {step_num} : {title.upper()}")
     else:
         print(f"  {title.upper()}")
     print(f"{separator}\n")
+
+
+def plot_heatmap(
+    data: np.ndarray,
+    xticklabels: List[str] = None,
+    yticklabels: List[str] = None,
+    title: str = None,
+    xlabel: str = None,
+    ylabel: str = None,
+    cbar_label: str = None,
+    cmap: str = "Blues",
+    annot: bool = True,
+    fmt: str = ".2f",
+    vmin: float = None,
+    vmax: float = None,
+    ax: plt.Axes = None,
+):
+    """
+    Trace une heatmap professionnelle sans dépendre de Seaborn ni de Pandas,
+    évitant tout problème de blocage DLL sur Windows.
+    """
+    standalone = False
+    if ax is None:
+        standalone = True
+        fig, ax = plt.subplots(figsize=(8, 6.5))
+    else:
+        fig = ax.figure
+
+    im = ax.imshow(data, cmap=cmap, vmin=vmin, vmax=vmax, aspect="auto")
+
+    if cbar_label is not None:
+        cbar = fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
+        cbar.set_label(cbar_label)
+
+    if xticklabels is not None:
+        ax.set_xticks(range(len(xticklabels)))
+        ax.set_xticklabels(xticklabels, rotation=45, ha="right", fontsize=9)
+    if yticklabels is not None:
+        ax.set_yticks(range(len(yticklabels)))
+        ax.set_yticklabels(yticklabels, fontsize=9)
+
+    if annot:
+        nrows, ncols = data.shape
+        val_min = vmin if vmin is not None else float(data.min())
+        val_max = vmax if vmax is not None else float(data.max())
+        mid = (val_min + val_max) / 2.0
+        for i in range(nrows):
+            for j in range(ncols):
+                val = data[i, j]
+                # Choisir une couleur de contraste adaptée
+                text_color = "white" if val > mid else "black"
+                ax.text(j, i, f"{val:{fmt[1:]}}", ha="center", va="center", color=text_color, fontsize=8)
+
+    if title:
+        ax.set_title(title, fontsize=11, pad=10)
+    if xlabel:
+        ax.set_xlabel(xlabel)
+    if ylabel:
+        ax.set_ylabel(ylabel)
+
+    if standalone:
+        plt.tight_layout()
+
+    return im
 
 
 # ==============================================================================
@@ -70,7 +131,7 @@ def step1_introduction(model_name: str = "gpt2"):
     Présente l'architecture de GPT-2, ses hyperparamètres clés et les dépendances.
     """
     print_banner("Introduction et préparation du modèle LLM", 1)
-    
+
     print(f"[+] Modèle sélectionné : {model_name}")
     print("[+] Architecture        : Transformer Décodeur seul (Causal Language Model)")
     print("[+] Concepteur          : OpenAI (Radford et al., 2019)")
@@ -82,7 +143,7 @@ def step1_introduction(model_name: str = "gpt2"):
     print("  • Nombre de têtes par couche : 12 têtes d'attention (d_k = 768 / 12 = 64)")
     print("  • Longueur de contexte max   : 1024 tokens")
     print("  • Mécanisme de masquage      : Masque causal autorégressif (Attention unilatérale gauche-à-droite)")
-    
+
     print("\nVérification de l'environnement matériel :")
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"  • Périphérique actif        : {device.upper()}")
@@ -90,7 +151,7 @@ def step1_introduction(model_name: str = "gpt2"):
         print(f"  • GPU détecté               : {torch.cuda.get_device_name(0)}")
     else:
         print("  • Mode CPU actif (suffisant et rapide pour GPT-2 base).")
-    
+
     print("\n[✓] Étape 1 complétée avec succès.\n")
 
 
@@ -105,7 +166,7 @@ def step2_tokenization_and_embeddings(
     Démontre la tokenisation BPE et calcule la similarité cosinus entre embeddings.
     """
     print_banner("Tokenisation et Embeddings", 2)
-    
+
     print(f"[+] Chargement du tokenizer et du modèle pour '{model_name}'...")
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModel.from_pretrained(model_name)
@@ -124,20 +185,16 @@ def step2_tokenization_and_embeddings(
     print(f"{'Index':<6} | {'Token ID':<10} | {'Token Brut (BPE)':<18} | {'Token Décodé':<15}")
     print("-" * 55)
     for idx, (tid, raw_tok, dec_tok) in enumerate(zip(token_ids_list, raw_tokens, tokens)):
-        # Nettoyage visuel de l'espace BPE 'Ġ'
         print(f"{idx:<6} | {tid:<10} | {raw_tok:<18} | {repr(dec_tok):<15}")
 
     print("\nObservation :")
-    print("  - Le caractère 'Ġ' (Unicode \\u0120) symbolise un espace blanc précédent le sous-mot.")
+    print("  - Le caractère 'Ġ' (Unicode \\u0120) symbolise un espace blanc précédant le sous-mot.")
     print("  - Le BPE permet de fragmenter les mots rares ou composés en sous-unités fréquentes.")
 
     # 2. Extraction des embeddings
     print("\n[3] Extraction des embeddings statiques (WTE : Word Token Embeddings) :")
     with torch.no_grad():
-        # Embeddings de la table d'entrée (wte)
         token_embeddings = model.wte(input_ids)[0]  # Shape: (seq_len, 768)
-        
-        # Représentations contextualisées après passage dans les 12 couches Transformer
         outputs = model(input_ids)
         last_hidden_state = outputs.last_hidden_state[0]  # Shape: (seq_len, 768)
 
@@ -145,29 +202,26 @@ def step2_tokenization_and_embeddings(
 
     # 3. Calcul de similarité Cosinus
     print("\n[4] Calcul de la similarité cosinus entre tokens :")
-    # Normalisation L2
     norm_embeddings = F.normalize(token_embeddings, p=2, dim=-1)
     cos_sim_matrix = torch.mm(norm_embeddings, norm_embeddings.t()).numpy()
 
-    # Visualisation avec Seaborn & Matplotlib
     clean_labels = [tok.strip() if tok.strip() else f"[{repr(tok)}]" for tok in tokens]
-    
-    plt.figure(figsize=(8, 6))
-    sns.heatmap(
+
+    plt.figure(figsize=(8, 6.5))
+    plot_heatmap(
         cos_sim_matrix,
         xticklabels=clean_labels,
         yticklabels=clean_labels,
+        title=f"Similarité Cosinus entre Embeddings Statiques (WTE)\nPhrase: « {sentence} »",
+        xlabel="Tokens",
+        ylabel="Tokens",
+        cbar_label="Similarité Cosinus [-1, 1]",
+        cmap="cividis",
         annot=True,
         fmt=".2f",
-        cmap="mako",
         vmin=-0.2,
-        vmax=1.0,
-        cbar_kws={"label": "Similarité Cosinus [-1, 1]"}
+        vmax=1.0
     )
-    plt.title(f"Similarité Cosinus entre Embeddings Statiques (WTE)\nPhrase: « {sentence} »", fontsize=11, pad=12)
-    plt.xlabel("Tokens")
-    plt.ylabel("Tokens")
-    
     save_path = VIS_DIR / "01_similarity_embeddings.png"
     plt.savefig(save_path, dpi=300, bbox_inches="tight")
     plt.close()
@@ -176,22 +230,22 @@ def step2_tokenization_and_embeddings(
     # Similarité contextualisée (last_hidden_state)
     norm_hidden = F.normalize(last_hidden_state, p=2, dim=-1)
     cos_sim_contextual = torch.mm(norm_hidden, norm_hidden.t()).numpy()
-    
-    plt.figure(figsize=(8, 6))
-    sns.heatmap(
+
+    plt.figure(figsize=(8, 6.5))
+    plot_heatmap(
         cos_sim_contextual,
         xticklabels=clean_labels,
         yticklabels=clean_labels,
+        title=f"Similarité Cosinus des Représentations Contextualisées (Couche 12)\nPhrase: « {sentence} »",
+        xlabel="Tokens",
+        ylabel="Tokens",
+        cbar_label="Similarité Cosinus (Contextuelle)",
+        cmap="viridis",
         annot=True,
         fmt=".2f",
-        cmap="viridis",
         vmin=-0.2,
-        vmax=1.0,
-        cbar_kws={"label": "Similarité Cosinus (Contextuelle)"}
+        vmax=1.0
     )
-    plt.title(f"Similarité Cosinus des Représentations Contextualisées (Couche 12)\nPhrase: « {sentence} »", fontsize=11, pad=12)
-    plt.xlabel("Tokens")
-    plt.ylabel("Tokens")
     save_path_ctx = VIS_DIR / "01_similarity_contextual.png"
     plt.savefig(save_path_ctx, dpi=300, bbox_inches="tight")
     plt.close()
@@ -213,7 +267,7 @@ def step3_text_generation_and_probabilities(
     et génère la suite selon plusieurs stratégies de décodage.
     """
     print_banner("Génération de texte et sélection des tokens", 3)
-    
+
     print(f"[+] Chargement de AutoModelForCausalLM ('{model_name}')...")
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     causal_model = AutoModelForCausalLM.from_pretrained(model_name)
@@ -241,7 +295,7 @@ def step3_text_generation_and_probabilities(
     print(f"\n[2] Top {top_k} des tokens prédits pour succéder à « {prompt} » :")
     print(f"{'Rang':<5} | {'Token ID':<10} | {'Token Décodé':<18} | {'Logit':<10} | {'Probabilité (%)':<15}")
     print("-" * 65)
-    
+
     top_tokens_labels = []
     for rank, (tid, prob) in enumerate(zip(top_indices, top_probs), start=1):
         token_str = tokenizer.decode([tid])
@@ -254,14 +308,14 @@ def step3_text_generation_and_probabilities(
     bars = plt.barh(top_tokens_labels[::-1], [p * 100 for p in top_probs[::-1]], color="#2b5c8f")
     plt.xlabel("Probabilité (%)")
     plt.title(f"Top {top_k} des Tokens Suivants pour le Prompt :\n« {prompt} »", fontsize=11)
-    
-    # Ajout des valeurs numériques au bout des barres
+
     for bar in bars:
         width = bar.get_width()
         plt.text(width + 0.3, bar.get_y() + bar.get_height() / 2, f"{width:.2f}%", 
                  va="center", ha="left", fontsize=9, color="#222222")
 
     plt.xlim(0, max(top_probs) * 100 + 5)
+    plt.tight_layout()
     save_path = VIS_DIR / "02_next_token_probs.png"
     plt.savefig(save_path, dpi=300, bbox_inches="tight")
     plt.close()
@@ -269,10 +323,9 @@ def step3_text_generation_and_probabilities(
 
     # 2. Démonstration des stratégies de décodage
     print("\n[3] Génération de complétion avec différentes stratégies de décodage :\n")
-    
-    torch.manual_seed(42)  # Reproductibilité
+    torch.manual_seed(42)
 
-    # A. Greedy Search (argmax)
+    # A. Greedy Search
     greedy_ids = causal_model.generate(
         input_ids,
         max_new_tokens=25,
@@ -331,7 +384,7 @@ def step4_attention_visualization(
     Extrait les poids d'attention multi-têtes et génère des heatmaps explicatives.
     """
     print_banner("Visualisation Simplifiée de l'Attention", 4)
-    
+
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModel.from_pretrained(model_name, output_attentions=True)
     model.eval()
@@ -348,8 +401,6 @@ def step4_attention_visualization(
     # Extraction des poids d'attention
     with torch.no_grad():
         outputs = model(**inputs, output_attentions=True)
-        # attentions est un tuple de 12 tenseurs (un par couche)
-        # Chaque tenseur a la dimension : (batch_size=1, num_heads=12, seq_len, seq_len)
         attentions = outputs.attentions
 
     num_layers = len(attentions)
@@ -365,20 +416,19 @@ def step4_attention_visualization(
     last_layer_att = attentions[-1][0]  # Shape: (12, seq_len, seq_len)
     avg_attention_last_layer = last_layer_att.mean(dim=0).numpy()
 
-    plt.figure(figsize=(8, 7))
-    sns.heatmap(
+    plt.figure(figsize=(8.5, 7))
+    plot_heatmap(
         avg_attention_last_layer,
         xticklabels=clean_tokens,
         yticklabels=clean_tokens,
+        title=f"Matrice d'Attention - Dernière Couche (Layer 12, Moyenne des 12 Têtes)\n« {sentence} »",
+        xlabel="Tokens Clés / Regardés (Keys)",
+        ylabel="Tokens Requêtes (Queries)",
+        cbar_label="Poids d'attention (Moyenne des têtes)",
         cmap="Blues",
         annot=True,
-        fmt=".2f",
-        cbar_kws={"label": "Poids d'attention (Moyenne des têtes)"}
+        fmt=".2f"
     )
-    plt.title(f"Matrice d'Attention - Dernière Couche (Layer 12, Moyenne des 12 Têtes)\n« {sentence} »", fontsize=11, pad=12)
-    plt.xlabel("Tokens Clés / Regardés (Keys)")
-    plt.ylabel("Tokens Requêtes (Queries)")
-    
     save_path_avg = VIS_DIR / "03_attention_layer11_avg.png"
     plt.savefig(save_path_avg, dpi=300, bbox_inches="tight")
     plt.close()
@@ -391,16 +441,15 @@ def step4_attention_visualization(
     fig, axes = plt.subplots(3, 4, figsize=(16, 12), sharex=True, sharey=True)
     for head_idx in range(num_heads):
         ax = axes[head_idx // 4, head_idx % 4]
-        sns.heatmap(
+        plot_heatmap(
             layer_att[head_idx],
             xticklabels=clean_tokens,
             yticklabels=clean_tokens,
-            cmap="crest",
-            cbar=False,
+            title=f"Couche {chosen_layer+1} - Tête {head_idx+1}",
+            cmap="viridis",
+            annot=False,
             ax=ax
         )
-        ax.set_title(f"Couche {chosen_layer+1} - Tête {head_idx+1}", fontsize=10)
-        ax.tick_params(axis='x', rotation=45)
 
     fig.suptitle(f"Spécialisation des 12 Têtes d'Attention (Couche {chosen_layer+1})\n« {sentence} »", fontsize=14)
     plt.tight_layout()
@@ -426,7 +475,7 @@ def step5_discussion_and_analysis(model_name: str = "gpt2"):
     la résolution de coréférence pronominale et fait le lien avec la théorie.
     """
     print_banner("Discussion et Analyse Approfondie", 5)
-    
+
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModel.from_pretrained(model_name, output_attentions=True)
     model.eval()
@@ -451,7 +500,6 @@ def step5_discussion_and_analysis(model_name: str = "gpt2"):
     tokens_a, atts_a = get_attention_for_sentence(phrase_a)
     tokens_b, atts_b = get_attention_for_sentence(phrase_b)
 
-    # Trouver l'indice du token "it" (souvent "it" ou "Ġit")
     def find_it_index(tok_list):
         for i, t in enumerate(tok_list):
             if "it" in t.lower():
@@ -464,27 +512,32 @@ def step5_discussion_and_analysis(model_name: str = "gpt2"):
     print(f"  • Index du token 'it' dans Phrase A : {idx_it_a} ('{tokens_a[idx_it_a]}')")
     print(f"  • Index du token 'it' dans Phrase B : {idx_it_b} ('{tokens_b[idx_it_b]}')")
 
-    # Comparer l'attention moyenne des dernières couches
-    # Les couches 10 et 11 (index 9 et 10) capturent la sémantique de haut niveau
     target_layer = 10  # Couche 11
     att_it_a = atts_a[target_layer][0].mean(dim=0)[idx_it_a].numpy()
     att_it_b = atts_b[target_layer][0].mean(dim=0)[idx_it_b].numpy()
 
-    # Visualisation comparative
+    # Visualisation comparative pure Matplotlib
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
 
     x_a = tokens_a[:idx_it_a + 1]
     y_a = att_it_a[:idx_it_a + 1]
-    sns.barplot(x=x_a, y=y_a, hue=x_a, legend=False, ax=ax1, palette="flare")
+    colors_a = plt.cm.magma(np.linspace(0.3, 0.85, len(x_a)))
+    ax1.bar(range(len(x_a)), y_a, color=colors_a, edgecolor="#222222", linewidth=0.7)
+    ax1.set_xticks(range(len(x_a)))
+    ax1.set_xticklabels(x_a, rotation=45, ha="right")
     ax1.set_title("Phrase A : « ... because it was too tired »\nAttention du token 'it'", fontsize=11)
     ax1.set_ylabel("Poids d'attention moyen (Couche 11)")
-    ax1.tick_params(axis='x', rotation=45)
+    ax1.grid(axis="y", linestyle="--", alpha=0.5)
 
     x_b = tokens_b[:idx_it_b + 1]
     y_b = att_it_b[:idx_it_b + 1]
-    sns.barplot(x=x_b, y=y_b, hue=x_b, legend=False, ax=ax2, palette="crest")
+    colors_b = plt.cm.viridis(np.linspace(0.3, 0.85, len(x_b)))
+    ax2.bar(range(len(x_b)), y_b, color=colors_b, edgecolor="#222222", linewidth=0.7)
+    ax2.set_xticks(range(len(x_b)))
+    ax2.set_xticklabels(x_b, rotation=45, ha="right")
     ax2.set_title("Phrase B : « ... because it was too wide »\nAttention du token 'it'", fontsize=11)
-    ax2.tick_params(axis='x', rotation=45)
+    ax2.set_ylabel("Poids d'attention moyen (Couche 11)")
+    ax2.grid(axis="y", linestyle="--", alpha=0.5)
 
     plt.tight_layout()
     save_path_cor = VIS_DIR / "05_coreference_attention.png"
@@ -555,7 +608,7 @@ def main():
         step3_text_generation_and_probabilities(model_name=args.model)
         step4_attention_visualization(model_name=args.model)
         step5_discussion_and_analysis(model_name=args.model)
-        
+
         print("\n" + "=" * 80)
         print("  [SUCCESS] TOUTES LES ÉTAPES DU TP 5 ONT ÉTÉ EXÉCUTÉES AVEC SUCCÈS !")
         print(f"  Consultez les visualisations générées dans : {VIS_DIR}")
