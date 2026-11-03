@@ -13,6 +13,7 @@ Chaque TP est organisé dans son propre dossier et accompagné, lorsque c'est ut
 | [`TP3 - Automatisation Python - API/`](./TP3%20-%20Automatisation%20Python%20-%20API/) | Automatisation par scripts Python et API | Scripts d'automatisation en Python et communication avec une API (requêtes HTTP avec `requests`, réponses JSON, gestion des erreurs). |
 | [`TP4 - Web Scraping/`](./TP4%20-%20Web%20Scraping/) | Web Scraping et automatisation ETL | Extraction de données de livres avec Requests et BeautifulSoup, nettoyage avec Pandas, export en CSV et Excel dans un seul script ETL. |
 | [`TP5 - LLM/`](./TP5%20-%20LLM/) | Découverte pratique d'un LLM et analyse d'attention | Tokenisation BPE, embeddings & similarité cosinus, génération autorégressive (logits/Softmax/top-k/top-p) et visualisation des poids d'attention multi-têtes (GPT-2). |
+| [`TP6 - Agentic AI/`](./TP6%20-%20Agentic%20AI/) | Création d’un premier Agent IA (ReAct) | Configuration du LLM, gestion des températures, création de Tools (`addition`, `celsius_to_fahrenheit`), mémoire (`ConversationBufferMemory`) et agent ReAct (`AgentExecutor`). |
 | [`TP_TEST/`](./TP_TEST/) | Bot RPA intelligent de veille marché et emploi | Bot de veille automatisé sur le marché et l'emploi, qui réunit les techniques des TP précédents. |
 
 ## Structure du dépôt
@@ -24,6 +25,7 @@ Chaque TP est organisé dans son propre dossier et accompagné, lorsque c'est ut
 ├── TP3 - Automatisation Python - API/
 ├── TP4 - Web Scraping/
 ├── TP5 - LLM/
+├── TP6 - Agentic AI/
 ├── TP_TEST/
 ├── .gitignore
 ├── README.md
@@ -81,6 +83,30 @@ Depuis la racine du dépôt, avec l'environnement virtuel activé :
 
 ```powershell
 python ".\TP5 - LLM\tp5_llm.py"
+```
+
+---
+
+## TP6 — Création d’un premier Agent IA
+
+Le dossier [`TP6 - Agentic AI/`](./TP6%20-%20Agentic%20AI/) contient l'implémentation complète d'un agent cognitif **ReAct** avec mémoire et outils personnalisés sous LangChain :
+- Préparation de l'environnement et gestion des clés API via `.env`.
+- Configuration de `ChatGroq` / `ChatOpenAI` et étude comparative de l'impact de la température (`0.2` vs `1.0`).
+- Création et tests unitaires de Tools (`addition`, `celsius_to_fahrenheit`).
+- Intégration de `ConversationBufferMemory` pour maintenir le contexte des échanges.
+- Orchestration cognitive via `AgentExecutor` (calculs arithmétiques, conversion d'unités, rétention de contexte et chaînage de plusieurs outils en une seule instruction).
+
+### Exécution rapide
+
+```powershell
+cd "TP6 - Agentic AI"
+.\venv\Scripts\activate
+
+python partie1_env.py
+python partie2_llm.py
+python partie3_tools.py
+python partie4_memory.py
+python partie5_6_agent.py
 ```
 
 ---
