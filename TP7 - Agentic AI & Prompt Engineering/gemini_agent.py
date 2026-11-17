@@ -111,7 +111,12 @@ class GeminiAgent:
                 "priorite": classification["priorite"],
                 "reponse": content,
                 "source": "; ".join(passage.source for passage in passages[:5]),
-                "information_manquante": "Voir la réponse du modèle.",
+                "information_manquante": (
+                    "Aucune."
+                    if self.local.is_identity_request(request)
+                    or request.strip().lower() in {"salut", "bonjour", "hello"}
+                    else "Vérifier les sources citées et demander une précision si nécessaire."
+                ),
             }
         try:
             result = json.loads(content)

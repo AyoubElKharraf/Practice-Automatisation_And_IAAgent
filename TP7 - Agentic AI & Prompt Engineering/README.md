@@ -54,6 +54,39 @@ L'invite `agent >>>` permet de saisir les questions. La commande `exit` quitte
 l'agent et rend la main au terminal, comme `exit()` dans l'interpréteur Python.
 La commande `json` active ou désactive la réponse JSON.
 
+## Interface web
+
+Lancer l'interface web locale avec le moteur sans API :
+
+```powershell
+python web_app.py
+```
+
+Puis ouvrir `http://127.0.0.1:8000`. Les requêtes d'exemple sont affichées en
+haut de page et peuvent être utilisées comme boutons de test.
+
+L'interface permet aussi d'ajouter temporairement des fichiers `.md`, `.txt`,
+`.json` ou `.csv`. Le contenu importé est recherché pendant la session et peut
+être cité dans les réponses. Les fichiers PDF nécessitent une extraction préalable
+en texte ou l'installation ultérieure d'une bibliothèque PDF.
+
+Si le port 8000 est déjà utilisé, lancer :
+
+```powershell
+python web_app.py --local --port 8765
+```
+
+Puis ouvrir `http://127.0.0.1:8765`.
+
+Pour activer Groq dans l'interface :
+
+```powershell
+python web_app.py --groq
+```
+
+Le backend local reste sélectionnable dans l'interface. L'interface n'affiche
+jamais les clés API.
+
 ## Utiliser Groq
 
 Le moteur local reste le comportement par défaut. Pour utiliser Groq, configurez

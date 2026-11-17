@@ -25,6 +25,26 @@ L'invite apparaît :
 agent >>>
 ```
 
+Une interface web est également disponible :
+
+```powershell
+python web_app.py
+```
+
+Ouvrir ensuite `http://127.0.0.1:8000`. Les requêtes d'exemple sont proposées
+au-dessus de la zone de conversation.
+
+L'interface web accepte également l'ajout temporaire de fichiers `.md`, `.txt`,
+`.json` et `.csv`. Après import, posez une question portant sur le document :
+l'agent recherche le passage utile et cite le fichier importé. Les PDF doivent
+être convertis en texte avant import dans cette version.
+
+Si le port 8000 est occupé, utiliser :
+
+```powershell
+python web_app.py --local --port 8765
+```
+
 Commandes disponibles :
 
 ```text

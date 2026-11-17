@@ -7,6 +7,7 @@ Supporte automatiquement :
 
 import os
 import sys
+from pathlib import Path
 
 # Assure un affichage correct des caractères UTF-8 sous Windows PowerShell
 if sys.platform == "win32":
@@ -18,7 +19,7 @@ if sys.platform == "win32":
 
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(dotenv_path=Path(__file__).with_name(".env"), override=True)
 
 def get_llm(temperature: float = 0.2):
     groq_api_key = os.getenv("GROQ_API_KEY")
@@ -26,10 +27,11 @@ def get_llm(temperature: float = 0.2):
 
     if groq_api_key and groq_api_key.strip():
         from langchain_groq import ChatGroq
-        # Modèle actif et disponible sur votre console Groq
+        # Le modèle peut être adapté aux restrictions de l'organisation Groq.
         return ChatGroq(
-            model_name="openai/gpt-oss-120b",
+            model_name=os.getenv("GROQ_MODEL", "openai/gpt-oss-20b"),
             temperature=temperature,
+            max_tokens=int(os.getenv("GROQ_MAX_TOKENS", "512")),
             api_key=groq_api_key
         )
     elif openai_api_key and openai_api_key.strip():
@@ -37,6 +39,7 @@ def get_llm(temperature: float = 0.2):
         return ChatOpenAI(
             model="gpt-4o-mini",
             temperature=temperature,
+            max_tokens=512,
             api_key=openai_api_key
         )
     else:

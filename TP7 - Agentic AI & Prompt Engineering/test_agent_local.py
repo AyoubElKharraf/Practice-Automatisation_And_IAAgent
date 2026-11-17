@@ -80,6 +80,17 @@ class LocalAgentTests(unittest.TestCase):
         result = json.loads(self.agent.respond("Explique-moi ce qu’est un agent IA.", json_output=True))
         self.assertEqual(set(result), {"categorie", "intention", "priorite", "reponse", "source"})
 
+    def test_added_document_is_searchable_and_cited(self) -> None:
+        self.agent.store.add_text(
+            "assistant_test.md",
+            "# Concept\n\n## Mission\n"
+            "Un assistant IA aide les étudiants avec des sources vérifiées.",
+        )
+        result = self.agent.respond("Quelle est la mission de l’assistant IA ?")
+        self.assertIn("Un assistant IA aide les étudiants", result["reponse"])
+        self.assertIn("assistant_test.md", result["source"])
+        self.assertFalse(result["escalade"])
+
     def test_memory_filters_irrelevant_information(self) -> None:
         self.agent.remember("groupe", "TP Atlas")
         self.agent.remember("projet", "assistant de recherche documentaire")

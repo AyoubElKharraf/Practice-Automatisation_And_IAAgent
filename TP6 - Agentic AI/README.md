@@ -5,7 +5,7 @@
 ---
 
 ## 🎯 Objectif du TP
-Apprendre à configurer un LLM, créer des Tools réutilisables, ajouter une mémoire conversationnelle (`ConversationBufferMemory`), et assembler le tout au sein d'un agent cognitif **ReAct** (`Reasoning + Acting`) capable de planifier, d'exécuter des actions outillées et de conserver le contexte.
+Apprendre à configurer un LLM, créer des Tools réutilisables, ajouter une mémoire conversationnelle (`ConversationBufferMemory`), et assembler le tout au sein d'un agent capable de planifier, d'exécuter des actions outillées et de conserver le contexte.
 
 ---
 
@@ -22,7 +22,9 @@ TP6 - Agentic AI/
 ├── partie2_llm.py             # Test du LLM et variation de température (Questions 5, 6, 7)
 ├── partie3_tools.py           # Définition et tests unitaires des Tools (Questions 8, 9, 10, 11)
 ├── partie4_memory.py          # Test de la ConversationBufferMemory (Questions 12, 13)
-├── partie5_6_agent.py         # Agent ReAct complet + Tests pratiques (Questions 14 à 20)
+├── partie5_6_agent.py         # Agent avec appels d'outils natifs + Tests pratiques (Questions 14 à 20)
+├── interface_tp6.py           # Interface graphique et exécution parallèle
+├── web_interface.py            # Interface web locale et exécution parallèle
 └── README.md                  # Compte-rendu d'exécution détaillé
 ```
 
@@ -38,7 +40,27 @@ cd "TP6 - Agentic AI"
 .\venv\Scripts\activate
 ```
 
-### 2. Configurer la clé API dans `.env`
+### 2. Lancer l'interface graphique
+
+L'interface exécute les quatre scripts en parallèle et affiche séparément leur
+état, leur durée, leur code retour et leur sortie :
+
+```powershell
+python interface_tp6.py
+```
+
+Pour utiliser l'interface web :
+
+```powershell
+python web_interface.py
+```
+
+Le navigateur s'ouvre sur `http://127.0.0.1:8765`. Les scripts sont lancés
+en parallèle après un clic sur le bouton d'exécution. La section de chat permet
+ensuite d'échanger avec l'agent : il conserve la mémoire de la conversation et
+appelle automatiquement les outils de calcul lorsque cela est nécessaire.
+
+### 3. Configurer la clé API dans `.env`
 Ouvrez le fichier `.env` :
 ```env
 # Clé API Groq (100% GRATUITE - https://console.groq.com/keys)
@@ -120,7 +142,7 @@ OPENAI_API_KEY="sk-..."
 ---
 
 ### Parties 5 & 6 : Création de l'Agent et Tests pratiques (Questions 14 à 20)
-L'agent ReAct a été instancié via `initialize_agent(..., agent=AgentType.CONVERSATIONAL_REACT_DESCRIPTION, memory=memory, verbose=True)` combinant le LLM, les deux outils et la mémoire tampon.
+L'agent est instancié avec `create_tool_calling_agent` et `AgentExecutor`, afin d'utiliser les appels d'outils natifs de `openai/gpt-oss-20b` tout en conservant la mémoire tampon.
 
 Exécution du script complet :
 ```powershell

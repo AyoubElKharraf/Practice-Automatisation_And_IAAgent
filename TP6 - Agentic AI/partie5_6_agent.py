@@ -1,7 +1,7 @@
 """
 Partie 5 : Création de l'Agent & Partie 6 : Tests pratiques
 Questions 14 à 20 :
-- Créer un agent ReAct (LLM + Tools + Memory)
+- Créer un agent avec appels d'outils natifs (LLM + Tools + Memory)
 - Instancier AgentExecutor avec verbose=True
 - Q16: "Calcule 12 + 8"
 - Q17: "Rappelle-moi le calcul précédent"
@@ -16,12 +16,13 @@ from dotenv import load_dotenv
 from llm_factory import get_llm
 try:
     from langchain.tools import tool
-    from langchain_classic.agents import initialize_agent, AgentType
+    from langchain_classic.agents import AgentExecutor, create_tool_calling_agent
     from langchain_classic.memory import ConversationBufferMemory
 except ImportError:
     from langchain.tools import tool
-    from langchain.agents import initialize_agent, AgentType
+    from langchain.agents import AgentExecutor, create_tool_calling_agent
     from langchain.memory import ConversationBufferMemory
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
 # Chargement du fichier .env
 load_dotenv()
@@ -69,15 +70,21 @@ def create_agent_react():
         return_messages=True
     )
 
-    # 14 & 15. Création de l'agent ReAct conversationnel et AgentExecutor
-    agent_executor = initialize_agent(
+    # 14 & 15. L'agent utilise le format natif d'appel d'outils du modèle.
+    prompt = ChatPromptTemplate.from_messages([
+        ("system", "Tu es un assistant utile. Réponds de façon concise et utilise les outils quand cela est nécessaire."),
+        MessagesPlaceholder("chat_history", optional=True),
+        ("human", "{input}"),
+        MessagesPlaceholder("agent_scratchpad"),
+    ])
+    agent = create_tool_calling_agent(llm, tools, prompt)
+    agent_executor = AgentExecutor(
+        agent=agent,
         tools=tools,
-        llm=llm,
-        agent=AgentType.CONVERSATIONAL_REACT_DESCRIPTION,
         memory=memory,
         verbose=True,
         handle_parsing_errors=True,
-        max_iterations=6
+        max_iterations=6,
     )
 
     return agent_executor

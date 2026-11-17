@@ -56,27 +56,34 @@ class DocumentStore:
             if path.name.upper() == "README.MD":
                 continue
             content = path.read_text(encoding="utf-8")
-            version_match = re.search(r"v(\d+)", path.stem, re.IGNORECASE)
-            version = int(version_match.group(1)) if version_match else 1
-            sections: list[tuple[str, str]] = []
-            section = "Document"
-            buffer: list[str] = []
-            for line in content.splitlines():
-                if line.startswith("## "):
-                    if buffer:
-                        sections.append((section, " ".join(buffer).strip()))
-                    section = line[3:].strip()
-                    buffer = []
-                elif (
-                    line.strip()
-                    and not line.startswith("#")
-                    and not line.startswith("Statut :")
-                ):
-                    buffer.append(line.strip())
-            if buffer:
-                sections.append((section, " ".join(buffer).strip()))
-            documents.append((path.name, version, sections))
+            documents.append(self._parse_document(path.name, content))
         return documents
+
+    @staticmethod
+    def _parse_document(name: str, content: str) -> tuple[str, int, list[tuple[str, str]]]:
+        version_match = re.search(r"v(\d+)", Path(name).stem, re.IGNORECASE)
+        version = int(version_match.group(1)) if version_match else 1
+        sections: list[tuple[str, str]] = []
+        section = "Document"
+        buffer: list[str] = []
+        for line in content.splitlines():
+            if line.startswith("## "):
+                if buffer:
+                    sections.append((section, " ".join(buffer).strip()))
+                section = line[3:].strip()
+                buffer = []
+            elif (
+                line.strip()
+                and not line.startswith("#")
+                and not line.startswith("Statut :")
+            ):
+                buffer.append(line.strip())
+        if buffer:
+            sections.append((section, " ".join(buffer).strip()))
+        return name, version, sections
+
+    def add_text(self, name: str, content: str) -> None:
+        self._documents.append(self._parse_document(name, content))
 
     def search(self, query: str, limit: int = 5) -> list[Passage]:
         query_words = _words(query)
@@ -104,12 +111,21 @@ class LocalAgent:
         self.store = DocumentStore(knowledge_base)
         self.memory: dict[str, str] = {}
 
+    @staticmethod
+    def is_identity_request(request: str) -> bool:
+        normalized = re.sub(r"[^a-z0-9]+", " ", _normalize(request)).strip()
+        return any(term in normalized for term in (
+            "presentez vous", "presente toi", "qui es tu", "quel est ton role",
+            "quelle est ta mission",
+        ))
+
     def classify(self, request: str, few_shot: bool = True) -> dict[str, Any]:
         normalized = _normalize(request)
         categories: list[str] = []
         if any(word in normalized for word in (
             "explique", "notion", "cours", "agent ia", "prompt", "theme",
-            "aborde", "module", "memoire", "conversationnelle",
+            "aborde", "module", "memoire", "conversationnelle", "mission",
+            "concept", "assistant ia", "fonction",
         )):
             categories.append("pédagogique")
         if any(word in normalized for word in ("inscription", "seance", "séance", "maintenue", "calendrier", "salle")):

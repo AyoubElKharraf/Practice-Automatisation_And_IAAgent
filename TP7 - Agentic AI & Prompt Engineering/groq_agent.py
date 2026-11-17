@@ -26,6 +26,11 @@ class GroqAgent:
             raise RuntimeError(
                 "GROQ_API_KEY est absente. Configurez-la dans PowerShell avant --groq."
             )
+        if not self.api_key.startswith("gsk_"):
+            raise RuntimeError(
+                "GROQ_API_KEY doit contenir la clé secrète Groq complète "
+                "(elle commence généralement par gsk_), pas le nom de la clé."
+            )
         self.model = model or os.environ.get("GROQ_MODEL", "allam-2-7b")
         self.system_prompt = (
             Path(__file__).parent / "prompts" / "prompt_systeme.md"
@@ -66,6 +71,8 @@ class GroqAgent:
             headers={
                 "Authorization": f"Bearer {self.api_key}",
                 "Content-Type": "application/json",
+                "Accept": "application/json",
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
             },
             method="POST",
         )
@@ -80,11 +87,16 @@ class GroqAgent:
             except (json.JSONDecodeError, UnicodeDecodeError, AttributeError):
                 pass
             suffix = f" Détail Groq : {error_detail}" if error_detail else ""
-            if error.code in (401, 403):
+            if error.code == 401:
                 suffix += (
-                    " La clé est présente mais refusée par Groq : révoquez-la, "
-                    "créez une clé active, acceptez les Model Terms du modèle "
-                    "et vérifiez l'accès API du compte."
+                    " La clé configurée est invalide, expirée ou révoquée. "
+                    "Créez une nouvelle clé Groq et remplacez uniquement sa valeur "
+                    "dans .env, puis redémarrez l'application."
+                )
+            elif error.code == 403:
+                suffix += (
+                    " L'accès est refusé par Groq : vérifiez les Model Terms du "
+                    "modèle et les droits du compte."
                 )
             raise RuntimeError(
                 f"Groq a refusé la requête ({error.code}).{suffix}"
@@ -102,7 +114,12 @@ class GroqAgent:
                 "priorite": classification["priorite"],
                 "reponse": content,
                 "source": "; ".join(passage.source for passage in passages[:5]),
-                "information_manquante": "Voir la réponse du modèle.",
+                "information_manquante": (
+                    "Aucune."
+                    if self.local.is_identity_request(request)
+                    or request.strip().lower() in {"salut", "bonjour", "hello"}
+                    else "Vérifier les sources citées et demander une précision si nécessaire."
+                ),
             }
         try:
             result = json.loads(content)
